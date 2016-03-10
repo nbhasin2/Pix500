@@ -9,6 +9,9 @@
 import Foundation
 import UIKit
 
+//TODO: - Get Photo list
+//https://api.500px.com/v1/photos?feature=popular&consumer_key=gqRvsm0MwGPteqRO5VetBW8QN0gJNZwHFimqOJX9
+
 class GridViewModel
 {
     // Saves image url 
