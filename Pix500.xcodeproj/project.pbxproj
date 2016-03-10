@@ -8,12 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		1936D7D01C911ECC00B5786E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936D7CF1C911ECC00B5786E /* AppDelegate.swift */; };
-		1936D7D21C911ECC00B5786E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936D7D11C911ECC00B5786E /* ViewController.swift */; };
-		1936D7D51C911ECC00B5786E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1936D7D31C911ECC00B5786E /* Main.storyboard */; };
 		1936D7D71C911ECC00B5786E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1936D7D61C911ECC00B5786E /* Assets.xcassets */; };
 		1936D7DA1C911ECC00B5786E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1936D7D81C911ECC00B5786E /* LaunchScreen.storyboard */; };
 		1936D7E51C911ECD00B5786E /* Pix500Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936D7E41C911ECD00B5786E /* Pix500Tests.swift */; };
 		1936D7F01C911ECD00B5786E /* Pix500UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936D7EF1C911ECD00B5786E /* Pix500UITests.swift */; };
+		1936D8101C91208700B5786E /* RLMSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936D80B1C91208700B5786E /* RLMSupport.swift */; };
+		1936D8121C91216000B5786E /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1936D8081C91208700B5786E /* Realm.framework */; };
+		1936D8131C91216000B5786E /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1936D8081C91208700B5786E /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1936D81C1C9124AF00B5786E /* GridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936D8191C9124AF00B5786E /* GridViewController.swift */; };
+		1936D81D1C9124AF00B5786E /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936D81B1C9124AF00B5786E /* ImageViewController.swift */; };
+		1936D81F1C91252100B5786E /* GridViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1936D81E1C91252100B5786E /* GridViewController.xib */; };
+		1936D8211C91253C00B5786E /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1936D8201C91253C00B5786E /* ImageViewController.xib */; };
+		1936D8241C91309000B5786E /* GridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1936D8231C91309000B5786E /* GridViewCell.xib */; };
+		1936D8261C9130B300B5786E /* GridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936D8251C9130B300B5786E /* GridViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,20 +40,40 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		1936D8141C91216000B5786E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				1936D8131C91216000B5786E /* Realm.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1936D7CC1C911ECC00B5786E /* Pix500.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pix500.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1936D7CF1C911ECC00B5786E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1936D7D11C911ECC00B5786E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		1936D7D41C911ECC00B5786E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1936D7D61C911ECC00B5786E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1936D7D91C911ECC00B5786E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		1936D7DB1C911ECC00B5786E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1936D7DB1C911ECC00B5786E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		1936D7E01C911ECD00B5786E /* Pix500Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pix500Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1936D7E41C911ECD00B5786E /* Pix500Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pix500Tests.swift; sourceTree = "<group>"; };
 		1936D7E61C911ECD00B5786E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1936D7EB1C911ECD00B5786E /* Pix500UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Pix500UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1936D7EF1C911ECD00B5786E /* Pix500UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pix500UITests.swift; sourceTree = "<group>"; };
 		1936D7F11C911ECD00B5786E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1936D8081C91208700B5786E /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		1936D80B1C91208700B5786E /* RLMSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSupport.swift; sourceTree = "<group>"; };
+		1936D8191C9124AF00B5786E /* GridViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewController.swift; sourceTree = "<group>"; };
+		1936D81B1C9124AF00B5786E /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
+		1936D81E1C91252100B5786E /* GridViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GridViewController.xib; sourceTree = "<group>"; };
+		1936D8201C91253C00B5786E /* ImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
+		1936D8231C91309000B5786E /* GridViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GridViewCell.xib; sourceTree = "<group>"; };
+		1936D8251C9130B300B5786E /* GridViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1936D8121C91216000B5786E /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,11 +126,14 @@
 			isa = PBXGroup;
 			children = (
 				1936D7CF1C911ECC00B5786E /* AppDelegate.swift */,
-				1936D7D11C911ECC00B5786E /* ViewController.swift */,
-				1936D7D31C911ECC00B5786E /* Main.storyboard */,
-				1936D7D61C911ECC00B5786E /* Assets.xcassets */,
+				1936D80B1C91208700B5786E /* RLMSupport.swift */,
 				1936D7D81C911ECC00B5786E /* LaunchScreen.storyboard */,
-				1936D7DB1C911ECC00B5786E /* Info.plist */,
+				1936D7D61C911ECC00B5786E /* Assets.xcassets */,
+				1936D8071C91208700B5786E /* Frameworks */,
+				1936D8091C91208700B5786E /* General */,
+				1936D80A1C91208700B5786E /* Model */,
+				1936D80C1C91208700B5786E /* ViewControllers */,
+				1936D80E1C91208700B5786E /* Views */,
 			);
 			path = Pix500;
 			sourceTree = "<group>";
@@ -125,6 +156,73 @@
 			path = Pix500UITests;
 			sourceTree = "<group>";
 		};
+		1936D8071C91208700B5786E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1936D8081C91208700B5786E /* Realm.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		1936D8091C91208700B5786E /* General */ = {
+			isa = PBXGroup;
+			children = (
+				1936D7DB1C911ECC00B5786E /* Info.plist */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		1936D80A1C91208700B5786E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1936D80C1C91208700B5786E /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1936D8181C9124AF00B5786E /* GridViewController */,
+				1936D81A1C9124AF00B5786E /* ImageViewController */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1936D80E1C91208700B5786E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1936D8221C91304100B5786E /* GridViewCell */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1936D8181C9124AF00B5786E /* GridViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1936D8191C9124AF00B5786E /* GridViewController.swift */,
+				1936D81E1C91252100B5786E /* GridViewController.xib */,
+			);
+			path = GridViewController;
+			sourceTree = "<group>";
+		};
+		1936D81A1C9124AF00B5786E /* ImageViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1936D81B1C9124AF00B5786E /* ImageViewController.swift */,
+				1936D8201C91253C00B5786E /* ImageViewController.xib */,
+			);
+			path = ImageViewController;
+			sourceTree = "<group>";
+		};
+		1936D8221C91304100B5786E /* GridViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				1936D8231C91309000B5786E /* GridViewCell.xib */,
+				1936D8251C9130B300B5786E /* GridViewCell.swift */,
+			);
+			path = GridViewCell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +233,8 @@
 				1936D7C81C911ECC00B5786E /* Sources */,
 				1936D7C91C911ECC00B5786E /* Frameworks */,
 				1936D7CA1C911ECC00B5786E /* Resources */,
+				1936D8141C91216000B5786E /* Embed Frameworks */,
+				1936D8151C91220C00B5786E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -230,8 +330,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1936D7DA1C911ECC00B5786E /* LaunchScreen.storyboard in Resources */,
+				1936D8241C91309000B5786E /* GridViewCell.xib in Resources */,
 				1936D7D71C911ECC00B5786E /* Assets.xcassets in Resources */,
-				1936D7D51C911ECC00B5786E /* Main.storyboard in Resources */,
+				1936D8211C91253C00B5786E /* ImageViewController.xib in Resources */,
+				1936D81F1C91252100B5786E /* GridViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,13 +353,32 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1936D8151C91220C00B5786E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework/strip-frameworks.sh\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		1936D7C81C911ECC00B5786E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1936D7D21C911ECC00B5786E /* ViewController.swift in Sources */,
 				1936D7D01C911ECC00B5786E /* AppDelegate.swift in Sources */,
+				1936D8261C9130B300B5786E /* GridViewCell.swift in Sources */,
+				1936D8101C91208700B5786E /* RLMSupport.swift in Sources */,
+				1936D81D1C9124AF00B5786E /* ImageViewController.swift in Sources */,
+				1936D81C1C9124AF00B5786E /* GridViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,14 +414,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1936D7D31C911ECC00B5786E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1936D7D41C911ECC00B5786E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1936D7D81C911ECC00B5786E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -399,6 +512,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Pix500/Frameworks",
+				);
 				INFOPLIST_FILE = Pix500/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pix.Pix500;
@@ -410,6 +528,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/Pix500/Frameworks",
+				);
 				INFOPLIST_FILE = Pix500/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pix.Pix500;

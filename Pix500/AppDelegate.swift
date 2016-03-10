@@ -12,10 +12,13 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var navController: UINavigationController?
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        setupNavController()
         return true
     }
 
@@ -40,7 +43,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    // Nav Controller Setup
+    
+    private func setupNavController()
+    {
+        self.navController = UINavigationController()
+        let gridViewController = GridViewController(nibName: "GridViewController", bundle: nil)
+        self.navController!.pushViewController(gridViewController, animated: false)
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        self.window!.rootViewController = navController
+        
+        self.window!.backgroundColor = UIColor.whiteColor()
+        self.window!.makeKeyAndVisible()
+    }
 
 }
 
