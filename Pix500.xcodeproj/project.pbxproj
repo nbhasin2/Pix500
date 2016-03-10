@@ -21,6 +21,7 @@
 		1936D8211C91253C00B5786E /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1936D8201C91253C00B5786E /* ImageViewController.xib */; };
 		1936D8241C91309000B5786E /* GridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1936D8231C91309000B5786E /* GridViewCell.xib */; };
 		1936D8261C9130B300B5786E /* GridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936D8251C9130B300B5786E /* GridViewCell.swift */; };
+		19FDEC2A1C914E2500808CE4 /* Services.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19FDEC291C914E2500808CE4 /* Services.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +38,62 @@
 			proxyType = 1;
 			remoteGlobalIDString = 1936D7CB1C911ECC00B5786E;
 			remoteInfo = Pix500;
+		};
+		19FDEC351C91513D00808CE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FDEC2B1C91513D00808CE4 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F435027A1A6791B200038A29;
+			remoteInfo = OAuthSwift;
+		};
+		19FDEC371C91513D00808CE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FDEC2B1C91513D00808CE4 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F451E3C5195B8CD80051434C;
+			remoteInfo = OAuthSwiftDemo;
+		};
+		19FDEC391C91513D00808CE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FDEC2B1C91513D00808CE4 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C48B28021AFA598D00C7DEF6;
+			remoteInfo = OAuthSwiftOSX;
+		};
+		19FDEC3B1C91513D00808CE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FDEC2B1C91513D00808CE4 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C49FD5241AFB5DF500791E1A;
+			remoteInfo = OAuthSwiftOSXDemo;
+		};
+		19FDEC3D1C91513D00808CE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FDEC2B1C91513D00808CE4 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4B6EE1E1BF74CE300443596;
+			remoteInfo = OAuthSwiftTVOS;
+		};
+		19FDEC3F1C91513D00808CE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FDEC2B1C91513D00808CE4 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C40890C01C11B37000E3146A;
+			remoteInfo = OAuthSwiftWatchOS;
+		};
+		19FDEC411C91513D00808CE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FDEC2B1C91513D00808CE4 /* OAuthSwift.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C4D50DF71BFB693F0053B624;
+			remoteInfo = OAuthSwiftTests;
+		};
+		19FDEC431C91516700808CE4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19FDEC2B1C91513D00808CE4 /* OAuthSwift.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = F43502791A6791B200038A29;
+			remoteInfo = OAuthSwift;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -74,6 +131,11 @@
 		1936D8201C91253C00B5786E /* ImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
 		1936D8231C91309000B5786E /* GridViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GridViewCell.xib; sourceTree = "<group>"; };
 		1936D8251C9130B300B5786E /* GridViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewCell.swift; sourceTree = "<group>"; };
+		19FDEC291C914E2500808CE4 /* Services.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Services.plist; sourceTree = "<group>"; };
+		19FDEC2B1C91513D00808CE4 /* OAuthSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthSwift.xcodeproj; path = "Pix500/3rdParty/OAuthSwift-master/OAuthSwift.xcodeproj"; sourceTree = "<group>"; };
+		1ED2F2BB2B65965B3CCAA311 /* Pods-Pix500.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pix500.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pix500/Pods-Pix500.release.xcconfig"; sourceTree = "<group>"; };
+		2420A54B343F6F1844F16DC2 /* Pods_Pix500.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pix500.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E4CBFEC4353B0ED69916552 /* Pods-Pix500.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pix500.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pix500/Pods-Pix500.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,10 +167,13 @@
 		1936D7C31C911ECC00B5786E = {
 			isa = PBXGroup;
 			children = (
+				19FDEC2B1C91513D00808CE4 /* OAuthSwift.xcodeproj */,
 				1936D7CE1C911ECC00B5786E /* Pix500 */,
 				1936D7E31C911ECD00B5786E /* Pix500Tests */,
 				1936D7EE1C911ECD00B5786E /* Pix500UITests */,
 				1936D7CD1C911ECC00B5786E /* Products */,
+				D54EC2200A19F298F946C3BD /* Pods */,
+				3DD1A5B2640D5214B3E3310E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,8 +193,10 @@
 				1936D7CF1C911ECC00B5786E /* AppDelegate.swift */,
 				1936D80B1C91208700B5786E /* RLMSupport.swift */,
 				1936D7D81C911ECC00B5786E /* LaunchScreen.storyboard */,
+				19FDEC291C914E2500808CE4 /* Services.plist */,
 				1936D7D61C911ECC00B5786E /* Assets.xcassets */,
 				1936D8071C91208700B5786E /* Frameworks */,
+				1936D8271C9148CC00B5786E /* 3rdParty */,
 				1936D8091C91208700B5786E /* General */,
 				1936D80A1C91208700B5786E /* Model */,
 				1936D80C1C91208700B5786E /* ViewControllers */,
@@ -223,6 +290,44 @@
 			path = GridViewCell;
 			sourceTree = "<group>";
 		};
+		1936D8271C9148CC00B5786E /* 3rdParty */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = 3rdParty;
+			sourceTree = "<group>";
+		};
+		19FDEC2C1C91513D00808CE4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				19FDEC361C91513D00808CE4 /* OAuthSwift.framework */,
+				19FDEC381C91513D00808CE4 /* OAuthSwiftDemo.app */,
+				19FDEC3A1C91513D00808CE4 /* OAuthSwift.framework */,
+				19FDEC3C1C91513D00808CE4 /* OAuthSwiftOSXDemo.app */,
+				19FDEC3E1C91513D00808CE4 /* OAuthSwift.framework */,
+				19FDEC401C91513D00808CE4 /* OAuthSwift.framework */,
+				19FDEC421C91513D00808CE4 /* OAuthSwiftTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3DD1A5B2640D5214B3E3310E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2420A54B343F6F1844F16DC2 /* Pods_Pix500.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D54EC2200A19F298F946C3BD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6E4CBFEC4353B0ED69916552 /* Pods-Pix500.debug.xcconfig */,
+				1ED2F2BB2B65965B3CCAA311 /* Pods-Pix500.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -239,6 +344,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				19FDEC441C91516700808CE4 /* PBXTargetDependency */,
 			);
 			name = Pix500;
 			productName = Pix500;
@@ -315,6 +421,12 @@
 			mainGroup = 1936D7C31C911ECC00B5786E;
 			productRefGroup = 1936D7CD1C911ECC00B5786E /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 19FDEC2C1C91513D00808CE4 /* Products */;
+					ProjectRef = 19FDEC2B1C91513D00808CE4 /* OAuthSwift.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				1936D7CB1C911ECC00B5786E /* Pix500 */,
@@ -324,11 +436,64 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXReferenceProxy section */
+		19FDEC361C91513D00808CE4 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = 19FDEC351C91513D00808CE4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		19FDEC381C91513D00808CE4 /* OAuthSwiftDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = OAuthSwiftDemo.app;
+			remoteRef = 19FDEC371C91513D00808CE4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		19FDEC3A1C91513D00808CE4 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = 19FDEC391C91513D00808CE4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		19FDEC3C1C91513D00808CE4 /* OAuthSwiftOSXDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = OAuthSwiftOSXDemo.app;
+			remoteRef = 19FDEC3B1C91513D00808CE4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		19FDEC3E1C91513D00808CE4 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = 19FDEC3D1C91513D00808CE4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		19FDEC401C91513D00808CE4 /* OAuthSwift.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = OAuthSwift.framework;
+			remoteRef = 19FDEC3F1C91513D00808CE4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		19FDEC421C91513D00808CE4 /* OAuthSwiftTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = OAuthSwiftTests.xctest;
+			remoteRef = 19FDEC411C91513D00808CE4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
 /* Begin PBXResourcesBuildPhase section */
 		1936D7CA1C911ECC00B5786E /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19FDEC2A1C914E2500808CE4 /* Services.plist in Resources */,
 				1936D7DA1C911ECC00B5786E /* LaunchScreen.storyboard in Resources */,
 				1936D8241C91309000B5786E /* GridViewCell.xib in Resources */,
 				1936D7D71C911ECC00B5786E /* Assets.xcassets in Resources */,
@@ -410,6 +575,11 @@
 			isa = PBXTargetDependency;
 			target = 1936D7CB1C911ECC00B5786E /* Pix500 */;
 			targetProxy = 1936D7EC1C911ECD00B5786E /* PBXContainerItemProxy */;
+		};
+		19FDEC441C91516700808CE4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OAuthSwift;
+			targetProxy = 19FDEC431C91516700808CE4 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -510,6 +680,7 @@
 		};
 		1936D7F51C911ECD00B5786E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E4CBFEC4353B0ED69916552 /* Pods-Pix500.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -526,6 +697,7 @@
 		};
 		1936D7F61C911ECD00B5786E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1ED2F2BB2B65965B3CCAA311 /* Pods-Pix500.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -607,6 +779,7 @@
 				1936D7F61C911ECD00B5786E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1936D7F71C911ECD00B5786E /* Build configuration list for PBXNativeTarget "Pix500Tests" */ = {
 			isa = XCConfigurationList;
@@ -615,6 +788,7 @@
 				1936D7F91C911ECD00B5786E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1936D7FA1C911ECD00B5786E /* Build configuration list for PBXNativeTarget "Pix500UITests" */ = {
 			isa = XCConfigurationList;
@@ -623,6 +797,7 @@
 				1936D7FC1C911ECD00B5786E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
