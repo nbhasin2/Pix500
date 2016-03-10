@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageViewController" customModule="Pix500" customModuleProvider="target">
             <connections>
+                <outlet property="pagingView" destination="cKB-kA-eeP" id="QLu-zh-83B"/>
                 <outlet property="view" destination="iN0-l3-epB" id="X9i-dF-O75"/>
             </connections>
         </placeholder>
@@ -14,7 +15,18 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cKB-kA-eeP" customClass="PagingView" customModule="Pix500" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </scrollView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="cKB-kA-eeP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FLo-0G-0hY"/>
+                <constraint firstItem="cKB-kA-eeP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="KsQ-8c-4qr"/>
+                <constraint firstAttribute="trailing" secondItem="cKB-kA-eeP" secondAttribute="trailing" id="m0R-te-RhJ"/>
+                <constraint firstAttribute="bottom" secondItem="cKB-kA-eeP" secondAttribute="bottom" id="rJQ-26-p4J"/>
+            </constraints>
         </view>
     </objects>
 </document>

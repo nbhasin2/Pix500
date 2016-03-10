@@ -16,15 +16,18 @@ class GridViewModel
 {
     // Saves image url 
     
-    var imageUrl = ""
+    var thumbnailUrl = NSURL()
+    var highResolutionUrl = NSURL()
     
-    init(imageurl:String)
+    convenience init(thumbnail:String, highresolution:String)
     {
-        self.imageUrl = imageurl
+        self.init()
+        thumbnailUrl = NSURL(string: thumbnail)!
+        highResolutionUrl = NSURL(string: highresolution)!
     }
 }
 
-class GridViewController : UIViewController
+class GridViewController : UIViewController, pxServerConnectionDelegate
 {
     
     // MARK: - Dummy Data 
@@ -41,6 +44,10 @@ class GridViewController : UIViewController
     
     private let reuseIdentifier = "GridViewBasicCell"
     private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+    
+    // Variables
+    private var serverConnectionHelper: ServerConnectionHelper?
+    private var imagePreviewer: ImageViewer!
     
     //  View Outlets
     
@@ -64,7 +71,11 @@ class GridViewController : UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        self.serverConnectionHelper = ServerConnectionHelper()
+        self.serverConnectionHelper?.serverConnectionDelegate = self
         self.initializeView()
+        self.serverConnectionHelper?.fetchPhotos()
+        
     }
     
     override func viewWillAppear(animated: Bool)
@@ -83,14 +94,12 @@ class GridViewController : UIViewController
         self.gridCollectionView.dataSource = self
         
         // Adding Dummy Data
-        
-        let g1 = GridViewModel(imageurl: "1")
-        let g2 = GridViewModel(imageurl: "2")
-        let g3 = GridViewModel(imageurl: "3")
-        
-        self.mutlableImageList.append(g1)
-        self.mutlableImageList.append(g2)
-        self.mutlableImageList.append(g3)
+
+    }
+    
+    func didEndFetchingPhotos()
+    {
+        self.gridCollectionView.reloadData()
     }
     
 }
@@ -101,7 +110,21 @@ extension GridViewController : UICollectionViewDelegate
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
+        var cell : UICollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath)!
+        
         print(indexPath.row)
+        let imageViewContoller: ImageViewController = ImageViewController(currentPosition: indexPath.item, images: (self.serverConnectionHelper?.photos)!)
+        self.navigationController?.pushViewController(imageViewContoller, animated: true)
+        
+//        var url = self.serverConnectionHelper?.photos[indexPath.row].highResolutionUrl
+
+//        let size = self.view.bounds.size
+//        
+//        let buttonsAssets = CloseButtonAssets(normal: UIImage(named: "close_normal")!, highlighted: UIImage(named: "close_highlighted")!)
+//        
+//        let configuration = ImageViewerConfiguration(imageSize: size, closeButtonAssets: buttonsAssets)
+//        self.imagePreviewer = ImageViewer(imageUrl: url!, configuration: configuration, displacedView: cell)
+//        self.presentImageViewer(self.imagePreviewer)
     }
 }
 
@@ -111,13 +134,18 @@ extension GridViewController : UICollectionViewDataSource
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return mutlableImageList.count
+        if(serverConnectionHelper != nil)
+        {
+            return serverConnectionHelper!.photos.count
+        }
+        return 0
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! GridViewCell
-
+        var rowItem = indexPath.row
+        cell.thumbnailImage.kf_setImageWithURL((self.serverConnectionHelper?.photos[rowItem].thumbnailUrl)!)
         cell.backgroundColor = UIColor.blackColor()
         // Configure the cell
         return cell
