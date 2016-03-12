@@ -11,7 +11,7 @@ import UIKit
 class ImageViewController: UICollectionViewController, pxServerConnectionDelegate {    
     //  Cell Identifiers
     
-    private let reuseIdentifier = "GridViewBasicCell"
+    private let reuseIdentifier = "ImageViewBasicCell"
     
     // Variables
     var scrollItemPosition = 0
@@ -41,12 +41,12 @@ class ImageViewController: UICollectionViewController, pxServerConnectionDelegat
         
         // View Initialization
         self.initializeView()
+        
     }
     
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.navigationController!.navigationBar.hidden = false
         
     }
     
@@ -73,12 +73,38 @@ class ImageViewController: UICollectionViewController, pxServerConnectionDelegat
         self.collectionView?.scrollEnabled = true
         self.collectionView?.delegate = self
         self.collectionView?.dataSource = self
+     
+        // Dismiss Button
         
+        let button   = UIButton(type: UIButtonType.System) as UIButton
+        button.frame = CGRectMake(0, 0, 70, 50)
+        button.tintColor = UIColor.whiteColor()
+        button.setTitle("Done", forState: UIControlState.Normal)
+        button.addTarget(self, action: "doneAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.view.addSubview(button)
+
     }
+    
+    // Done Action
+    
+    func doneAction(sender:UIButton!)
+    {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    // Server Connection Delegate methods
     
     func didEndFetchingPhotos()
     {
         self.collectionView?.reloadData()
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        
+        //This is necessary for the layout to honor "itemsPerRow"
+        self.collectionView!.collectionViewLayout.invalidateLayout()
+        
     }
     
     override func viewDidLayoutSubviews() {

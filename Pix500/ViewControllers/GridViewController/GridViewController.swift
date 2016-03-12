@@ -19,6 +19,7 @@ class GridViewController : UICollectionViewController, pxServerConnectionDelegat
     
     let gridLayoutCellWidth = CGFloat(150)
     let gridLayoutCellHeight = CGFloat(150)
+    let transitionDelegate: TransitioningDelegate = TransitioningDelegate()
 
     //  MARK: - Constructors
     
@@ -54,6 +55,12 @@ class GridViewController : UICollectionViewController, pxServerConnectionDelegat
         
     }
     
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        
+        //This is necessary for the layout to honor "itemsPerRow"
+        self.collectionView!.collectionViewLayout.invalidateLayout()
+        
+    }
     //  MARK: - Initializer
     
     private func initializeView()
@@ -92,10 +99,20 @@ extension GridViewController : UICollectionViewDelegateFlowLayout
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
+//        let imageViewContoller: ImageViewController = ImageViewController(nibName: "ImageViewController", bundle: nil)
+//        imageViewContoller.scrollItemPosition = indexPath.item
+//        self.navigationController?.pushViewController(imageViewContoller, animated: true)
+        
+        let attributes = collectionView.layoutAttributesForItemAtIndexPath(indexPath)
+        let attributesFrame = attributes?.frame
+        let frameToOpenFrom = collectionView.convertRect(attributesFrame!, toView: collectionView.superview)
+        transitionDelegate.openingFrame = frameToOpenFrom
+        
         let imageViewContoller: ImageViewController = ImageViewController(nibName: "ImageViewController", bundle: nil)
-//        imageViewContoller.useLayoutToLayoutNavigationTransitions = true
         imageViewContoller.scrollItemPosition = indexPath.item
-        self.navigationController?.pushViewController(imageViewContoller, animated: true)
+        imageViewContoller.transitioningDelegate = transitionDelegate
+        imageViewContoller.modalPresentationStyle = .Custom
+        presentViewController(imageViewContoller, animated: true, completion: nil)
     }
 
     //  MARK: - Collection View Datasource

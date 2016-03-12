@@ -52,16 +52,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func setupNavController()
     {
-        self.navController = UINavigationController()
+        
         let gridViewController = GridViewController(nibName: "GridViewController", bundle: nil)
-//        gridViewController.useLayoutToLayoutNavigationTransitions = false
-        self.navController!.pushViewController(gridViewController, animated: false)
+        gridViewController.useLayoutToLayoutNavigationTransitions = false
+        
+        self.navController = UINavigationController(rootViewController: gridViewController)
+//        self.navController!.pushViewController(gridViewController, animated: false)
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         self.window!.rootViewController = navController
         
-        self.window!.backgroundColor = UIColor.whiteColor()
+        self.window!.backgroundColor = UIColor.blackColor()
         self.window!.makeKeyAndVisible()
     }
 

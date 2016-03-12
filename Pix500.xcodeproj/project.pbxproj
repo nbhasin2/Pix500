@@ -36,13 +36,12 @@
 		198E9B2E1C91E637003447BD /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198E9B211C91E637003447BD /* String+MD5.swift */; };
 		198E9B2F1C91E637003447BD /* ThreadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198E9B221C91E637003447BD /* ThreadHelper.swift */; };
 		198E9B301C91E637003447BD /* UIButton+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198E9B231C91E637003447BD /* UIButton+Kingfisher.swift */; };
-		19CD35EB1C920CC600FEBB08 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD35E21C920CC600FEBB08 /* CGPoint.swift */; };
-		19CD35EC1C920CC600FEBB08 /* CGSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD35E31C920CC600FEBB08 /* CGSize.swift */; };
-		19CD35ED1C920CC600FEBB08 /* ImageViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD35E51C920CC600FEBB08 /* ImageViewer.swift */; };
-		19CD35EE1C920CC600FEBB08 /* ImageViewerDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD35E61C920CC600FEBB08 /* ImageViewerDismissTransition.swift */; };
-		19CD35EF1C920CC600FEBB08 /* ImageViewerPresentTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD35E71C920CC600FEBB08 /* ImageViewerPresentTransition.swift */; };
-		19CD35F01C920CC600FEBB08 /* ImageViewerSwipeToDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD35E81C920CC600FEBB08 /* ImageViewerSwipeToDismissTransition.swift */; };
-		19CD35F11C920CC600FEBB08 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19CD35EA1C920CC600FEBB08 /* Info.plist */; };
+		19A01C871C949812004E8079 /* ysl_navi_back_btn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19A01C821C949812004E8079 /* ysl_navi_back_btn@2x.png */; };
+		19A01C881C949812004E8079 /* UIViewController+YSLTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A01C841C949812004E8079 /* UIViewController+YSLTransition.m */; };
+		19A01C891C949812004E8079 /* YSLTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 19A01C861C949812004E8079 /* YSLTransitionAnimator.m */; };
+		19A01C8E1C94A16E004E8079 /* DismissalAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A01C8B1C94A16E004E8079 /* DismissalAnimator.swift */; };
+		19A01C8F1C94A16E004E8079 /* PresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A01C8C1C94A16E004E8079 /* PresentationAnimator.swift */; };
+		19A01C901C94A16E004E8079 /* TransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A01C8D1C94A16E004E8079 /* TransitioningDelegate.swift */; };
 		19CD36051C92250100FEBB08 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD36041C92250100FEBB08 /* ImageViewCell.swift */; };
 		19CD36071C92250C00FEBB08 /* ImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19CD36061C92250C00FEBB08 /* ImageViewCell.xib */; };
 		19CD36091C9330D500FEBB08 /* GalleryItemsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD36081C9330D500FEBB08 /* GalleryItemsLayout.swift */; };
@@ -138,13 +137,15 @@
 		198E9B211C91E637003447BD /* String+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
 		198E9B221C91E637003447BD /* ThreadHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadHelper.swift; sourceTree = "<group>"; };
 		198E9B231C91E637003447BD /* UIButton+Kingfisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Kingfisher.swift"; sourceTree = "<group>"; };
-		19CD35E21C920CC600FEBB08 /* CGPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
-		19CD35E31C920CC600FEBB08 /* CGSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGSize.swift; sourceTree = "<group>"; };
-		19CD35E51C920CC600FEBB08 /* ImageViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewer.swift; sourceTree = "<group>"; };
-		19CD35E61C920CC600FEBB08 /* ImageViewerDismissTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerDismissTransition.swift; sourceTree = "<group>"; };
-		19CD35E71C920CC600FEBB08 /* ImageViewerPresentTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerPresentTransition.swift; sourceTree = "<group>"; };
-		19CD35E81C920CC600FEBB08 /* ImageViewerSwipeToDismissTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerSwipeToDismissTransition.swift; sourceTree = "<group>"; };
-		19CD35EA1C920CC600FEBB08 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19A01C7C1C9497CB004E8079 /* Pix500-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pix500-Bridging-Header.h"; sourceTree = "<group>"; };
+		19A01C821C949812004E8079 /* ysl_navi_back_btn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ysl_navi_back_btn@2x.png"; sourceTree = "<group>"; };
+		19A01C831C949812004E8079 /* UIViewController+YSLTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+YSLTransition.h"; sourceTree = "<group>"; };
+		19A01C841C949812004E8079 /* UIViewController+YSLTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+YSLTransition.m"; sourceTree = "<group>"; };
+		19A01C851C949812004E8079 /* YSLTransitionAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YSLTransitionAnimator.h; sourceTree = "<group>"; };
+		19A01C861C949812004E8079 /* YSLTransitionAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YSLTransitionAnimator.m; sourceTree = "<group>"; };
+		19A01C8B1C94A16E004E8079 /* DismissalAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DismissalAnimator.swift; sourceTree = "<group>"; };
+		19A01C8C1C94A16E004E8079 /* PresentationAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationAnimator.swift; sourceTree = "<group>"; };
+		19A01C8D1C94A16E004E8079 /* TransitioningDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitioningDelegate.swift; sourceTree = "<group>"; };
 		19CD36041C92250100FEBB08 /* ImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
 		19CD36061C92250C00FEBB08 /* ImageViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewCell.xib; sourceTree = "<group>"; };
 		19CD36081C9330D500FEBB08 /* GalleryItemsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryItemsLayout.swift; sourceTree = "<group>"; };
@@ -228,6 +229,7 @@
 		1936D7CE1C911ECC00B5786E /* Pix500 */ = {
 			isa = PBXGroup;
 			children = (
+				19A01C7C1C9497CB004E8079 /* Pix500-Bridging-Header.h */,
 				1936D7CF1C911ECC00B5786E /* AppDelegate.swift */,
 				1936D80B1C91208700B5786E /* RLMSupport.swift */,
 				1936D7D81C911ECC00B5786E /* LaunchScreen.storyboard */,
@@ -336,8 +338,9 @@
 		1936D8271C9148CC00B5786E /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				19A01C8A1C94A16E004E8079 /* Transition */,
+				19A01C801C949812004E8079 /* YSLTransitionAnimator */,
 				19CD36081C9330D500FEBB08 /* GalleryItemsLayout.swift */,
-				19CD35DF1C920CC600FEBB08 /* ImageViewer */,
 				198E9B151C91E637003447BD /* Kingfisher */,
 				19FDEC4E1C91CD1C00808CE4 /* Alamofire */,
 			);
@@ -366,50 +369,34 @@
 			path = "Kingfisher-master/Sources";
 			sourceTree = "<group>";
 		};
-		19CD35DF1C920CC600FEBB08 /* ImageViewer */ = {
+		19A01C801C949812004E8079 /* YSLTransitionAnimator */ = {
 			isa = PBXGroup;
 			children = (
-				19CD35E01C920CC600FEBB08 /* Source */,
-				19CD35E91C920CC600FEBB08 /* Supporting Files */,
+				19A01C811C949812004E8079 /* Resources */,
+				19A01C831C949812004E8079 /* UIViewController+YSLTransition.h */,
+				19A01C841C949812004E8079 /* UIViewController+YSLTransition.m */,
+				19A01C851C949812004E8079 /* YSLTransitionAnimator.h */,
+				19A01C861C949812004E8079 /* YSLTransitionAnimator.m */,
 			);
-			path = ImageViewer;
+			path = YSLTransitionAnimator;
 			sourceTree = "<group>";
 		};
-		19CD35E01C920CC600FEBB08 /* Source */ = {
+		19A01C811C949812004E8079 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				19CD35E11C920CC600FEBB08 /* Extensions */,
-				19CD35E41C920CC600FEBB08 /* ImageViewer */,
+				19A01C821C949812004E8079 /* ysl_navi_back_btn@2x.png */,
 			);
-			path = Source;
+			path = Resources;
 			sourceTree = "<group>";
 		};
-		19CD35E11C920CC600FEBB08 /* Extensions */ = {
+		19A01C8A1C94A16E004E8079 /* Transition */ = {
 			isa = PBXGroup;
 			children = (
-				19CD35E21C920CC600FEBB08 /* CGPoint.swift */,
-				19CD35E31C920CC600FEBB08 /* CGSize.swift */,
+				19A01C8B1C94A16E004E8079 /* DismissalAnimator.swift */,
+				19A01C8C1C94A16E004E8079 /* PresentationAnimator.swift */,
+				19A01C8D1C94A16E004E8079 /* TransitioningDelegate.swift */,
 			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		19CD35E41C920CC600FEBB08 /* ImageViewer */ = {
-			isa = PBXGroup;
-			children = (
-				19CD35E51C920CC600FEBB08 /* ImageViewer.swift */,
-				19CD35E61C920CC600FEBB08 /* ImageViewerDismissTransition.swift */,
-				19CD35E71C920CC600FEBB08 /* ImageViewerPresentTransition.swift */,
-				19CD35E81C920CC600FEBB08 /* ImageViewerSwipeToDismissTransition.swift */,
-			);
-			path = ImageViewer;
-			sourceTree = "<group>";
-		};
-		19CD35E91C920CC600FEBB08 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				19CD35EA1C920CC600FEBB08 /* Info.plist */,
-			);
-			path = "Supporting Files";
+			path = Transition;
 			sourceTree = "<group>";
 		};
 		19CD36031C9224F700FEBB08 /* ImageViewCell */ = {
@@ -590,6 +577,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				19FDEC671C91CD1C00808CE4 /* Info.plist in Resources */,
+				19A01C871C949812004E8079 /* ysl_navi_back_btn@2x.png in Resources */,
 				19FDEC2A1C914E2500808CE4 /* Services.plist in Resources */,
 				198E9B2A1C91E637003447BD /* Info.plist in Resources */,
 				1936D7DA1C911ECC00B5786E /* LaunchScreen.storyboard in Resources */,
@@ -598,7 +586,6 @@
 				1936D8241C91309000B5786E /* GridViewCell.xib in Resources */,
 				1936D7D71C911ECC00B5786E /* Assets.xcassets in Resources */,
 				1936D8211C91253C00B5786E /* ImageViewController.xib in Resources */,
-				19CD35F11C920CC600FEBB08 /* Info.plist in Resources */,
 				1936D81F1C91252100B5786E /* GridViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -644,14 +631,13 @@
 				198E9B241C91E637003447BD /* Image.swift in Sources */,
 				198E9B2C1C91E637003447BD /* KingfisherOptionsInfo.swift in Sources */,
 				198E9B2E1C91E637003447BD /* String+MD5.swift in Sources */,
-				19CD35EC1C920CC600FEBB08 /* CGSize.swift in Sources */,
 				19FDEC6A1C91CD1C00808CE4 /* NetworkReachabilityManager.swift in Sources */,
 				1936D7D01C911ECC00B5786E /* AppDelegate.swift in Sources */,
+				19A01C901C94A16E004E8079 /* TransitioningDelegate.swift in Sources */,
 				19FDEC4A1C91CA2D00808CE4 /* PXDictionaryExtension.swift in Sources */,
 				198E9AF21C91D3F6003447BD /* PXNSDataExtension.swift in Sources */,
+				19A01C891C949812004E8079 /* YSLTransitionAnimator.m in Sources */,
 				19FDEC6E1C91CD1C00808CE4 /* Response.swift in Sources */,
-				19CD35EF1C920CC600FEBB08 /* ImageViewerPresentTransition.swift in Sources */,
-				19CD35EE1C920CC600FEBB08 /* ImageViewerDismissTransition.swift in Sources */,
 				19FDEC691C91CD1C00808CE4 /* MultipartFormData.swift in Sources */,
 				198E9B291C91E637003447BD /* ImageView+Kingfisher.swift in Sources */,
 				19FDEC701C91CD1C00808CE4 /* Result.swift in Sources */,
@@ -666,17 +652,15 @@
 				198E9B2F1C91E637003447BD /* ThreadHelper.swift in Sources */,
 				198E9B2B1C91E637003447BD /* KingfisherManager.swift in Sources */,
 				19FDEC741C91CD1C00808CE4 /* Upload.swift in Sources */,
-				19CD35F01C920CC600FEBB08 /* ImageViewerSwipeToDismissTransition.swift in Sources */,
 				197A7A2C1C941E4A002EE6D5 /* GridViewModel.swift in Sources */,
 				19FDEC751C91CD1C00808CE4 /* Validation.swift in Sources */,
 				198E9B281C91E637003447BD /* ImageTransition.swift in Sources */,
 				19FDEC721C91CD1C00808CE4 /* Stream.swift in Sources */,
-				19CD35ED1C920CC600FEBB08 /* ImageViewer.swift in Sources */,
 				1936D81D1C9124AF00B5786E /* ImageViewController.swift in Sources */,
 				19FDEC711C91CD1C00808CE4 /* ServerTrustPolicy.swift in Sources */,
-				19CD35EB1C920CC600FEBB08 /* CGPoint.swift in Sources */,
 				19FDEC461C91C60C00808CE4 /* SharedConstants.swift in Sources */,
 				19FDEC6C1C91CD1C00808CE4 /* ParameterEncoding.swift in Sources */,
+				19A01C8F1C94A16E004E8079 /* PresentationAnimator.swift in Sources */,
 				19FDEC681C91CD1C00808CE4 /* Manager.swift in Sources */,
 				19FDEC631C91CD1C00808CE4 /* Alamofire.swift in Sources */,
 				19FDEC4D1C91CC1700808CE4 /* ServerConnectionHelper.swift in Sources */,
@@ -684,8 +668,10 @@
 				19FDEC6F1C91CD1C00808CE4 /* ResponseSerialization.swift in Sources */,
 				1936D81C1C9124AF00B5786E /* GridViewController.swift in Sources */,
 				198E9B301C91E637003447BD /* UIButton+Kingfisher.swift in Sources */,
+				19A01C881C949812004E8079 /* UIViewController+YSLTransition.m in Sources */,
 				198E9B251C91E637003447BD /* ImageCache.swift in Sources */,
 				19CD36051C92250100FEBB08 /* ImageViewCell.swift in Sources */,
+				19A01C8E1C94A16E004E8079 /* DismissalAnimator.swift in Sources */,
 				19FDEC641C91CD1C00808CE4 /* Download.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -821,6 +807,8 @@
 			baseConfigurationReference = 6E4CBFEC4353B0ED69916552 /* Pods-Pix500.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -830,6 +818,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pix.Pix500;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pix500/Pix500-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -838,6 +829,8 @@
 			baseConfigurationReference = 1ED2F2BB2B65965B3CCAA311 /* Pods-Pix500.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -847,6 +840,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pix.Pix500;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pix500/Pix500-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 			};
 			name = Release;
 		};
