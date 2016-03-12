@@ -9,57 +9,17 @@
 import Foundation
 import UIKit
 
-//TODO: - Get Photo list
-//https://api.500px.com/v1/photos?feature=popular&consumer_key=gqRvsm0MwGPteqRO5VetBW8QN0gJNZwHFimqOJX9
-
-class GridViewModel
+class GridViewController : UICollectionViewController, pxServerConnectionDelegate
 {
-    // Saves image url 
-    
-    var thumbnailUrl = NSURL()
-    var highResolutionUrl = NSURL()
-    
-    convenience init(thumbnail:String, highresolution:String)
-    {
-        self.init()
-        thumbnailUrl = NSURL(string: thumbnail)!
-        highResolutionUrl = NSURL(string: highresolution)!
-    }
-}
-
-class GridViewController : UIViewController, pxServerConnectionDelegate
-{
-    var horizontalInset = 0.0 as CGFloat
-    var verticalInset = 0.0 as CGFloat
-    
-    var minimumItemWidth = 0.0 as CGFloat
-    var maximumItemWidth = 0.0 as CGFloat
-    var itemHeight = 0.0 as CGFloat
-    
-    // MARK: - Dummy Data 
-    
-//    var mutlableImageList = [GridViewModel]()
-    
-    //  View Constants
-    
-    let viewTitle = "Pix500"
-    
-    let searchController = UISearchController(searchResultsController: nil)
-    
     //  Cell Identifiers
     
     private let reuseIdentifier = "GridViewBasicCell"
-    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
     
-    // Variables
-    private var serverConnectionHelper: ServerConnectionHelper?
-    private var imagePreviewer: ImageViewer!
+    //  Constants 
     
-    //  View Outlets
-    
-    
-    @IBOutlet weak var gridCollectionView: UICollectionView!
-    
+    let gridLayoutCellWidth = CGFloat(150)
+    let gridLayoutCellHeight = CGFloat(150)
+
     //  MARK: - Constructors
     
     override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)
@@ -77,19 +37,15 @@ class GridViewController : UIViewController, pxServerConnectionDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.serverConnectionHelper = ServerConnectionHelper.sharedInstance
-        self.serverConnectionHelper?.serverConnectionDelegate = self
+        ServerConnectionHelper.sharedInstance.serverConnectionDelegate = self
         self.initializeView()
-        self.serverConnectionHelper?.fetchPhotos()
-        
-        
+        ServerConnectionHelper.sharedInstance.fetchFirstPhotoPage()
     }
     
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
         self.navigationController!.navigationBar.hidden = true
-        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -101,98 +57,73 @@ class GridViewController : UIViewController, pxServerConnectionDelegate
     
     private func initializeView()
     {
-        self.gridCollectionView.registerNib((UINib(nibName: "GridViewCell", bundle: nil)), forCellWithReuseIdentifier: reuseIdentifier)
-        self.gridCollectionView.scrollEnabled = true
-        self.gridCollectionView.delegate = self
-        self.gridCollectionView.dataSource = self
-        
-        // Adding Dummy Data
-
+        self.collectionView?.registerNib((UINib(nibName: "GridViewCell", bundle: nil)), forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView?.scrollEnabled = true
+        self.collectionView?.delegate = self
+        self.collectionView?.dataSource = self
     }
     
     func didEndFetchingPhotos()
     {
-        self.gridCollectionView.reloadData()
+        self.collectionView?.reloadData()
     }
     
 }
 
+//  MARK: - Collection Datasoure | Delegate | Flowlayout 
+
+// GridViewController Extension with UICollectionViewDelegateFlowLayout, Collection Datasource and Collection Delegate related methods methods
+
 extension GridViewController : UICollectionViewDelegateFlowLayout
 {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let picDimension = self.view.frame.size.width / 4.0
-        return CGSizeMake(150, 150)
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        let leftRightInset = self.view.frame.size.width / 14.0
-        return UIEdgeInsetsMake(0, leftRightInset, 0, leftRightInset)
+        return CGSizeMake(gridLayoutCellWidth, gridLayoutCellHeight)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+        // Setup server connection delegate
+        ServerConnectionHelper.sharedInstance.serverConnectionDelegate = self
     }
-}
 
-extension GridViewController : UICollectionViewDelegate
-{
     //  MARK: - Collection View Delegate
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        var cell : UICollectionViewCell = collectionView.cellForItemAtIndexPath(indexPath)!
-        
-        print(indexPath.row)
-        let imageViewContoller: ImageViewController = ImageViewController(currentPosition: indexPath.item, images: (self.serverConnectionHelper?.photos)!)
+        let imageViewContoller: ImageViewController = ImageViewController(nibName: "ImageViewController", bundle: nil)
+//        imageViewContoller.useLayoutToLayoutNavigationTransitions = true
+        imageViewContoller.scrollItemPosition = indexPath.item
         self.navigationController?.pushViewController(imageViewContoller, animated: true)
-        
-//        var url = self.serverConnectionHelper?.photos[indexPath.row].highResolutionUrl
-
-//        let size = self.view.bounds.size
-//        
-//        let buttonsAssets = CloseButtonAssets(normal: UIImage(named: "close_normal")!, highlighted: UIImage(named: "close_highlighted")!)
-//        
-//        let configuration = ImageViewerConfiguration(imageSize: size, closeButtonAssets: buttonsAssets)
-//        self.imagePreviewer = ImageViewer(imageUrl: url!, configuration: configuration, displacedView: cell)
-//        self.presentImageViewer(self.imagePreviewer)
     }
-}
 
-extension GridViewController : UICollectionViewDataSource
-{
     //  MARK: - Collection View Datasource
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        if(serverConnectionHelper != nil)
-        {
-            return serverConnectionHelper!.photos.count
-        }
-        return 0
+        return ServerConnectionHelper.sharedInstance.photos.count
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
+        // Fetch more content
         
-        // If its 2nd last cell fetch more data
-        var photolist = self.serverConnectionHelper?.photos
-        
-        if(indexPath.item == ((photolist?.count)! - 4))
+        if(indexPath.item == ((ServerConnectionHelper.sharedInstance.photos.count) - 1))
         {
-            self.serverConnectionHelper?.fetchNextPhotoPage()
+            ServerConnectionHelper.sharedInstance.fetchNextPhotoPage()
         }
         
+        // Configure cell
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! GridViewCell
-        var rowItem = indexPath.row
-        cell.thumbnailImage.kf_setImageWithURL((self.serverConnectionHelper?.photos[rowItem].thumbnailUrl)!)
+        cell.thumbnailImage.kf_setImageWithURL((ServerConnectionHelper.sharedInstance.photos[indexPath.row].thumbnailUrl))
         cell.backgroundColor = UIColor.blackColor()
-        // Configure the cell
+        
         return cell
 
     }
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
+    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
     {
         return 1
     }

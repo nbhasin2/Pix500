@@ -54,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         self.navController = UINavigationController()
         let gridViewController = GridViewController(nibName: "GridViewController", bundle: nil)
+//        gridViewController.useLayoutToLayoutNavigationTransitions = false
         self.navController!.pushViewController(gridViewController, animated: false)
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)

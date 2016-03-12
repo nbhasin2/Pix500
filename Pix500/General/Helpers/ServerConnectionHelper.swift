@@ -15,74 +15,99 @@ import Foundation
 
 class ServerConnectionHelper {
     
+    // Singleton Class
     static let sharedInstance = ServerConnectionHelper()
 
+    // Array of GridViewModel objects to store 
+    // Thumbnail and High resolution photos
+    
     var photos = [GridViewModel]()
+    
+    // Delegate method to notify changes in the model
+    
     weak var serverConnectionDelegate: pxServerConnectionDelegate?
+    
+    // Number of current and total pages
+    // Initially set to 0
+    
     var currentPage = 0;
     var totalPages = 0;
     
-    let pageString = "&page="
+    
+    // Fetches contents of next page
     
     func fetchNextPhotoPage()
     {
-        fetchPhotos(currentPage+1)
+        if(currentPage != 0)
+        {
+            fetchPhotos(currentPage+1)
+        }
     }
     
-    func fetchPhotos()
+    // Fetches the first photo page
+    // Calls fetchPhotos that takes in the initial page number (0)
+    
+    func fetchFirstPhotoPage()
     {
         self.fetchPhotos(0)
     }
     
+    // Fetches photo page and updates the photos array.
+    // Takes in the page number to fetch from server.
+    
     func fetchPhotos(page:Int)
     {
-
-        
-        var pageStr = pageString + "\(page)"
+        var specificPage = specificPageParam + "\(page)"
         if page < 2
         {
-            pageStr = ""
+            specificPage = ""
         }
         
-        request(Method.GET, pxServerFetch + pageStr)
+        // Creating request to fetch the page
+        
+        request(Method.GET, pxServerFetch + specificPage)
             .responseJSON { response in
             if let jsonData = response.data
             {
                 
-                if let jsonDict = jsonData.json
+                if let jsonDictionary = jsonData.json
                 {
-                    var jsonDictItem = jsonDict as [String: AnyObject]
-                    self.currentPage = jsonDictItem.intValue("current_page")
-                    self.totalPages = jsonDictItem.intValue("current_page")
-                    var a = jsonDictItem["photos"]
-                    print(a?.count)
-                    for image in a as! [Dictionary<String, AnyObject>]
+                    let jsonDictionaryItem = jsonDictionary as [String: AnyObject]
+                    self.currentPage = jsonDictionaryItem.intValue("current_page")
+                    self.totalPages = jsonDictionaryItem.intValue("current_page")
+                    
+                    let photoListData = jsonDictionaryItem["photos"]
+
+                    for photo in photoListData as! [Dictionary<String, AnyObject>]
                     {
-                        // Full image urls
-                        var imageURl = image["image_url"]?.stringValue
-                        
                         var thumbnailPhoto = ""
                         var highresolutionPhoto = ""
-                        
-                        for imageSize4 in image["images"] as! [Dictionary<String, AnyObject>]
+            
+                        for imageSize in photo["images"] as! [Dictionary<String, AnyObject>]
                         {
+                            let size = imageSize["size"]?.intValue
+                            let httpUrl = imageSize.stringValue("https_url")
                             
-                            var imageSize = imageSize4["size"]?.intValue
-                            var images4 = imageSize4.stringValue("https_url")
-                            if imageSize == 440
+                            // Checking if image size equals 440
+                            
+                            if (size == 440)
                             {
-                                thumbnailPhoto = images4
+                                thumbnailPhoto = httpUrl
                             }
-                            if imageSize == 2048
+                            if (size == 2048)
                             {
-                                highresolutionPhoto = images4
+                                highresolutionPhoto = httpUrl
                             }
                         }
+                        
+                        // Update the photos array and add thumbnail and highresolution photo data.
                         
                         self.photos.append(GridViewModel(thumbnail: thumbnailPhoto, highresolution: highresolutionPhoto))
                     }
                     
                 }
+                
+                // Finished fetching photo data. Send delegate call back. 
                 
                 self.serverConnectionDelegate?.didEndFetchingPhotos?()
                 
@@ -91,7 +116,6 @@ class ServerConnectionHelper {
                     print(jsonArray)
                 }
             }
-
         }
     }
 }

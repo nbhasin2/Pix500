@@ -21,6 +21,7 @@
 		1936D8211C91253C00B5786E /* ImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1936D8201C91253C00B5786E /* ImageViewController.xib */; };
 		1936D8241C91309000B5786E /* GridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1936D8231C91309000B5786E /* GridViewCell.xib */; };
 		1936D8261C9130B300B5786E /* GridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1936D8251C9130B300B5786E /* GridViewCell.swift */; };
+		197A7A2C1C941E4A002EE6D5 /* GridViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197A7A2B1C941E4A002EE6D5 /* GridViewModel.swift */; };
 		198E9AF21C91D3F6003447BD /* PXNSDataExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198E9AF11C91D3F6003447BD /* PXNSDataExtension.swift */; };
 		198E9B241C91E637003447BD /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198E9B161C91E637003447BD /* Image.swift */; };
 		198E9B251C91E637003447BD /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198E9B171C91E637003447BD /* ImageCache.swift */; };
@@ -42,13 +43,6 @@
 		19CD35EF1C920CC600FEBB08 /* ImageViewerPresentTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD35E71C920CC600FEBB08 /* ImageViewerPresentTransition.swift */; };
 		19CD35F01C920CC600FEBB08 /* ImageViewerSwipeToDismissTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD35E81C920CC600FEBB08 /* ImageViewerSwipeToDismissTransition.swift */; };
 		19CD35F11C920CC600FEBB08 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19CD35EA1C920CC600FEBB08 /* Info.plist */; };
-		19CD35FC1C92245E00FEBB08 /* CellReuseQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD35F41C92245E00FEBB08 /* CellReuseQueue.swift */; };
-		19CD35FD1C92245E00FEBB08 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD35F51C92245E00FEBB08 /* Constraints.swift */; };
-		19CD35FE1C92245E00FEBB08 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD35F61C92245E00FEBB08 /* ContentView.swift */; };
-		19CD35FF1C92245E00FEBB08 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19CD35F71C92245E00FEBB08 /* Info.plist */; };
-		19CD36001C92245E00FEBB08 /* PagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD35F91C92245E00FEBB08 /* PagingView.swift */; };
-		19CD36011C92245E00FEBB08 /* PagingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD35FA1C92245E00FEBB08 /* PagingViewCell.swift */; };
-		19CD36021C92245E00FEBB08 /* Position.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD35FB1C92245E00FEBB08 /* Position.swift */; };
 		19CD36051C92250100FEBB08 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD36041C92250100FEBB08 /* ImageViewCell.swift */; };
 		19CD36071C92250C00FEBB08 /* ImageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 19CD36061C92250C00FEBB08 /* ImageViewCell.xib */; };
 		19CD36091C9330D500FEBB08 /* GalleryItemsLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19CD36081C9330D500FEBB08 /* GalleryItemsLayout.swift */; };
@@ -128,6 +122,7 @@
 		1936D8201C91253C00B5786E /* ImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewController.xib; sourceTree = "<group>"; };
 		1936D8231C91309000B5786E /* GridViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GridViewCell.xib; sourceTree = "<group>"; };
 		1936D8251C9130B300B5786E /* GridViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewCell.swift; sourceTree = "<group>"; };
+		197A7A2B1C941E4A002EE6D5 /* GridViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridViewModel.swift; sourceTree = "<group>"; };
 		198E9AF11C91D3F6003447BD /* PXNSDataExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PXNSDataExtension.swift; sourceTree = "<group>"; };
 		198E9B161C91E637003447BD /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		198E9B171C91E637003447BD /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -150,14 +145,6 @@
 		19CD35E71C920CC600FEBB08 /* ImageViewerPresentTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerPresentTransition.swift; sourceTree = "<group>"; };
 		19CD35E81C920CC600FEBB08 /* ImageViewerSwipeToDismissTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewerSwipeToDismissTransition.swift; sourceTree = "<group>"; };
 		19CD35EA1C920CC600FEBB08 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		19CD35F41C92245E00FEBB08 /* CellReuseQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellReuseQueue.swift; sourceTree = "<group>"; };
-		19CD35F51C92245E00FEBB08 /* Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
-		19CD35F61C92245E00FEBB08 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		19CD35F71C92245E00FEBB08 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		19CD35F81C92245E00FEBB08 /* PagingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagingView.h; sourceTree = "<group>"; };
-		19CD35F91C92245E00FEBB08 /* PagingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingView.swift; sourceTree = "<group>"; };
-		19CD35FA1C92245E00FEBB08 /* PagingViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingViewCell.swift; sourceTree = "<group>"; };
-		19CD35FB1C92245E00FEBB08 /* Position.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Position.swift; sourceTree = "<group>"; };
 		19CD36041C92250100FEBB08 /* ImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
 		19CD36061C92250C00FEBB08 /* ImageViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageViewCell.xib; sourceTree = "<group>"; };
 		19CD36081C9330D500FEBB08 /* GalleryItemsLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryItemsLayout.swift; sourceTree = "<group>"; };
@@ -296,6 +283,7 @@
 		1936D80A1C91208700B5786E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				197A7A2B1C941E4A002EE6D5 /* GridViewModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -349,7 +337,6 @@
 			isa = PBXGroup;
 			children = (
 				19CD36081C9330D500FEBB08 /* GalleryItemsLayout.swift */,
-				19CD35F31C92245E00FEBB08 /* PagingView */,
 				19CD35DF1C920CC600FEBB08 /* ImageViewer */,
 				198E9B151C91E637003447BD /* Kingfisher */,
 				19FDEC4E1C91CD1C00808CE4 /* Alamofire */,
@@ -423,21 +410,6 @@
 				19CD35EA1C920CC600FEBB08 /* Info.plist */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		19CD35F31C92245E00FEBB08 /* PagingView */ = {
-			isa = PBXGroup;
-			children = (
-				19CD35F41C92245E00FEBB08 /* CellReuseQueue.swift */,
-				19CD35F51C92245E00FEBB08 /* Constraints.swift */,
-				19CD35F61C92245E00FEBB08 /* ContentView.swift */,
-				19CD35F71C92245E00FEBB08 /* Info.plist */,
-				19CD35F81C92245E00FEBB08 /* PagingView.h */,
-				19CD35F91C92245E00FEBB08 /* PagingView.swift */,
-				19CD35FA1C92245E00FEBB08 /* PagingViewCell.swift */,
-				19CD35FB1C92245E00FEBB08 /* Position.swift */,
-			);
-			path = PagingView;
 			sourceTree = "<group>";
 		};
 		19CD36031C9224F700FEBB08 /* ImageViewCell */ = {
@@ -626,7 +598,6 @@
 				1936D8241C91309000B5786E /* GridViewCell.xib in Resources */,
 				1936D7D71C911ECC00B5786E /* Assets.xcassets in Resources */,
 				1936D8211C91253C00B5786E /* ImageViewController.xib in Resources */,
-				19CD35FF1C92245E00FEBB08 /* Info.plist in Resources */,
 				19CD35F11C920CC600FEBB08 /* Info.plist in Resources */,
 				1936D81F1C91252100B5786E /* GridViewController.xib in Resources */,
 			);
@@ -681,11 +652,9 @@
 				19FDEC6E1C91CD1C00808CE4 /* Response.swift in Sources */,
 				19CD35EF1C920CC600FEBB08 /* ImageViewerPresentTransition.swift in Sources */,
 				19CD35EE1C920CC600FEBB08 /* ImageViewerDismissTransition.swift in Sources */,
-				19CD36001C92245E00FEBB08 /* PagingView.swift in Sources */,
 				19FDEC691C91CD1C00808CE4 /* MultipartFormData.swift in Sources */,
 				198E9B291C91E637003447BD /* ImageView+Kingfisher.swift in Sources */,
 				19FDEC701C91CD1C00808CE4 /* Result.swift in Sources */,
-				19CD35FC1C92245E00FEBB08 /* CellReuseQueue.swift in Sources */,
 				1936D8261C9130B300B5786E /* GridViewCell.swift in Sources */,
 				19FDEC651C91CD1C00808CE4 /* Error.swift in Sources */,
 				198E9B2D1C91E637003447BD /* Resource.swift in Sources */,
@@ -696,10 +665,9 @@
 				19FDEC731C91CD1C00808CE4 /* Timeline.swift in Sources */,
 				198E9B2F1C91E637003447BD /* ThreadHelper.swift in Sources */,
 				198E9B2B1C91E637003447BD /* KingfisherManager.swift in Sources */,
-				19CD36011C92245E00FEBB08 /* PagingViewCell.swift in Sources */,
-				19CD35FE1C92245E00FEBB08 /* ContentView.swift in Sources */,
 				19FDEC741C91CD1C00808CE4 /* Upload.swift in Sources */,
 				19CD35F01C920CC600FEBB08 /* ImageViewerSwipeToDismissTransition.swift in Sources */,
+				197A7A2C1C941E4A002EE6D5 /* GridViewModel.swift in Sources */,
 				19FDEC751C91CD1C00808CE4 /* Validation.swift in Sources */,
 				198E9B281C91E637003447BD /* ImageTransition.swift in Sources */,
 				19FDEC721C91CD1C00808CE4 /* Stream.swift in Sources */,
@@ -711,14 +679,12 @@
 				19FDEC6C1C91CD1C00808CE4 /* ParameterEncoding.swift in Sources */,
 				19FDEC681C91CD1C00808CE4 /* Manager.swift in Sources */,
 				19FDEC631C91CD1C00808CE4 /* Alamofire.swift in Sources */,
-				19CD35FD1C92245E00FEBB08 /* Constraints.swift in Sources */,
 				19FDEC4D1C91CC1700808CE4 /* ServerConnectionHelper.swift in Sources */,
 				198E9B261C91E637003447BD /* ImageDownloader.swift in Sources */,
 				19FDEC6F1C91CD1C00808CE4 /* ResponseSerialization.swift in Sources */,
 				1936D81C1C9124AF00B5786E /* GridViewController.swift in Sources */,
 				198E9B301C91E637003447BD /* UIButton+Kingfisher.swift in Sources */,
 				198E9B251C91E637003447BD /* ImageCache.swift in Sources */,
-				19CD36021C92245E00FEBB08 /* Position.swift in Sources */,
 				19CD36051C92250100FEBB08 /* ImageViewCell.swift in Sources */,
 				19FDEC641C91CD1C00808CE4 /* Download.swift in Sources */,
 			);

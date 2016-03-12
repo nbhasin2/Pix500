@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ImageViewCell: PagingViewCell {
+class ImageViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bgView: UIView!
     
@@ -16,11 +16,7 @@ class ImageViewCell: PagingViewCell {
         super.awakeFromNib()
     }
     
-    required init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+    required init(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)!
     }
 }

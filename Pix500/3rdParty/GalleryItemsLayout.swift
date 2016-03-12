@@ -29,14 +29,7 @@ class GalleryItemsLayout: UICollectionViewLayout {
         
         _layoutAttributes = Dictionary<String, UICollectionViewLayoutAttributes>() // 1
         
-        let path = NSIndexPath(forItem: 0, inSection: 0)
-//        let attributes = UICollectionViewLayoutAttributes(forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withIndexPath: path)
-        
         let headerHeight = UIApplication.sharedApplication().statusBarFrame.size.height
-//        attributes.frame = CGRectMake(0, 0, self.collectionView!.frame.size.width, headerHeight)
-        
-//        let headerKey = layoutKeyForHeaderAtIndexPath(path)
-//        _layoutAttributes[headerKey] = attributes // 2
         
         let numberOfSections = self.collectionView!.numberOfSections() // 3
         
