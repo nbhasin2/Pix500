@@ -47,7 +47,7 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
     {
         super.viewWillAppear(animated)
         self.navigationController!.navigationBar.hidden = true
-        self.collectionView?.reloadData()
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -82,7 +82,15 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
     
     func didDismissImageViewController(indexLocation:Int)
     {
+        // Reload Data
+        
+        if (self.collectionView?.numberOfItemsInSection(0) < ServerConnectionHelper.sharedInstance.photos.count)
+        {
+            self.collectionView?.reloadData()
+        }
+        
         // Check if cell is visible in the view
+        
         let visisbleIndexPathList = self.collectionView?.indexPathsForVisibleItems()
         if (visisbleIndexPathList?.contains(NSIndexPath(forItem: indexLocation, inSection: 0)) == false)
         {
