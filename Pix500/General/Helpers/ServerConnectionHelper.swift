@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc protocol pxServerConnectionDelegate: NSObjectProtocol
+@objc protocol PXServerConnectionDelegate: NSObjectProtocol
 {
     optional func didEndFetchingPhotos()
 }
@@ -25,7 +25,7 @@ class ServerConnectionHelper {
     
     // Delegate method to notify changes in the model
     
-    weak var serverConnectionDelegate: pxServerConnectionDelegate?
+    weak var serverConnectionDelegate: PXServerConnectionDelegate?
     
     // Number of current and total pages
     // Initially set to 0

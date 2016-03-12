@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class GridViewController : UICollectionViewController, pxServerConnectionDelegate
+class GridViewController : UICollectionViewController, PXServerConnectionDelegate, PXImageViewControllerDelegate
 {
     //  Cell Identifiers
     
@@ -71,9 +71,23 @@ class GridViewController : UICollectionViewController, pxServerConnectionDelegat
         self.collectionView?.dataSource = self
     }
     
+    //  MARK: - Server Connection Delegate method
+    
     func didEndFetchingPhotos()
     {
         self.collectionView?.reloadData()
+    }
+    
+    //  MARK: - ImageView Controller Delegate
+    
+    func didDismissImageViewController(indexLocation:Int)
+    {
+        // Check if cell is visible in the view
+        let visisbleIndexPathList = self.collectionView?.indexPathsForVisibleItems()
+        if (visisbleIndexPathList?.contains(NSIndexPath(forItem: indexLocation, inSection: 0)) == false)
+        {
+            self.collectionView?.scrollToItemAtIndexPath(NSIndexPath(forItem: indexLocation, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: false)
+        }
     }
     
 }
@@ -112,6 +126,7 @@ extension GridViewController : UICollectionViewDelegateFlowLayout
         imageViewContoller.scrollItemPosition = indexPath.item
         imageViewContoller.transitioningDelegate = transitionDelegate
         imageViewContoller.modalPresentationStyle = .Custom
+        imageViewContoller.imageViewControllerDelegate = self
         presentViewController(imageViewContoller, animated: true, completion: nil)
     }
 

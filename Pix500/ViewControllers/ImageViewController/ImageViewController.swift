@@ -8,14 +8,27 @@
 
 import UIKit
 
-class ImageViewController: UICollectionViewController, pxServerConnectionDelegate {    
+/// Protocol of `ImageDownloader`.
+@objc public protocol PXImageViewControllerDelegate
+{
+    optional func didDismissImageViewController(indexLocation:Int)
+}
+
+class ImageViewController: UICollectionViewController, PXServerConnectionDelegate
+{
     //  Cell Identifiers
     
     private let reuseIdentifier = "ImageViewBasicCell"
     
     // Variables
+    
     var scrollItemPosition = 0
     var didScrollOnce = false
+    var currentIndexPosition = 0
+    
+    // Delegate
+    
+    var imageViewControllerDelegate: PXImageViewControllerDelegate?
     
     //  MARK: - Constructors
     
@@ -62,6 +75,7 @@ class ImageViewController: UICollectionViewController, pxServerConnectionDelegat
         self.collectionView?.registerNib((UINib(nibName: "ImageViewCell", bundle: nil)), forCellWithReuseIdentifier: reuseIdentifier)
         
         // Flow Layout Setup
+        
         let flowlayout = UICollectionViewFlowLayout()
         flowlayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
         flowlayout.minimumInteritemSpacing = 0
@@ -90,7 +104,9 @@ class ImageViewController: UICollectionViewController, pxServerConnectionDelegat
     
     func doneAction(sender:UIButton!)
     {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+            self.imageViewControllerDelegate?.didDismissImageViewController?(self.currentIndexPosition)
+        })
     }
     
     // Server Connection Delegate methods
@@ -111,6 +127,7 @@ class ImageViewController: UICollectionViewController, pxServerConnectionDelegat
         super.viewDidLayoutSubviews()
         if(self.didScrollOnce == false)
         {
+            self.currentIndexPosition = self.scrollItemPosition
             self.collectionView?.scrollToItemAtIndexPath(NSIndexPath(forItem: self.scrollItemPosition, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
             self.didScrollOnce = true
         }
@@ -145,6 +162,10 @@ extension ImageViewController : UICollectionViewDelegateFlowLayout
             ServerConnectionHelper.sharedInstance.fetchNextPhotoPage()
         }
         
+        // Setting current index position 
+        
+        self.currentIndexPosition = indexPath.item
+    
         // Configure cell
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ImageViewCell
