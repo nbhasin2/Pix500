@@ -46,6 +46,7 @@ class GridViewController : UICollectionViewController, pxServerConnectionDelegat
     {
         super.viewWillAppear(animated)
         self.navigationController!.navigationBar.hidden = true
+        self.collectionView?.reloadData()
     }
     
     override func viewDidAppear(animated: Bool) {

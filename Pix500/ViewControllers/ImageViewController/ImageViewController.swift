@@ -15,6 +15,7 @@ class ImageViewController: UICollectionViewController, pxServerConnectionDelegat
     
     // Variables
     var scrollItemPosition = 0
+    var didScrollOnce = false
     
     //  MARK: - Constructors
     
@@ -66,6 +67,7 @@ class ImageViewController: UICollectionViewController, pxServerConnectionDelegat
         flowlayout.minimumInteritemSpacing = 0
         flowlayout.minimumLineSpacing = 0
         
+        self.automaticallyAdjustsScrollViewInsets = false
         self.collectionView?.setCollectionViewLayout(flowlayout, animated: true)
         self.collectionView?.pagingEnabled = true
         self.collectionView?.scrollEnabled = true
@@ -78,12 +80,20 @@ class ImageViewController: UICollectionViewController, pxServerConnectionDelegat
     {
         self.collectionView?.reloadData()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if(self.didScrollOnce == false)
+        {
+            self.collectionView?.scrollToItemAtIndexPath(NSIndexPath(forItem: self.scrollItemPosition, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
+            self.didScrollOnce = true
+        }
+    }
 }
 
 //  MARK: - Collection Datasoure | Delegate | Flowlayout
 
 // ImageViewController Extension with UICollectionViewDelegateFlowLayout, Collection Datasource and Collection Delegate related methods methods
-
 
 extension ImageViewController : UICollectionViewDelegateFlowLayout
 {
@@ -91,11 +101,6 @@ extension ImageViewController : UICollectionViewDelegateFlowLayout
         return (self.collectionView?.frame.size)!
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        ServerConnectionHelper.sharedInstance.serverConnectionDelegate = self
-        self.collectionView?.scrollToItemAtIndexPath(NSIndexPath(forItem: self.scrollItemPosition, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
-    }
 
     //  MARK: - Collection View Datasource
     
@@ -116,7 +121,7 @@ extension ImageViewController : UICollectionViewDelegateFlowLayout
         
         // Configure cell
         
-        var cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ImageViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ImageViewCell
         cell.imageView.kf_setImageWithURL((ServerConnectionHelper.sharedInstance.photos[indexPath.item].highResolutionUrl))
         cell.backgroundColor = UIColor.blackColor()
         
