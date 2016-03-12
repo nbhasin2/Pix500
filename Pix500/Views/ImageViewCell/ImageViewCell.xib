@@ -11,7 +11,24 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iEV-Fv-uVC">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hsa-MY-EBn">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <activityIndicatorView contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" preservesSuperviewLayoutMargins="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="e39-t0-Faw">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </activityIndicatorView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="e39-t0-Faw" firstAttribute="top" secondItem="hsa-MY-EBn" secondAttribute="top" id="4cz-Db-6L9"/>
+                        <constraint firstAttribute="trailing" secondItem="e39-t0-Faw" secondAttribute="trailing" id="Joc-fV-Dpn"/>
+                        <constraint firstAttribute="bottom" secondItem="e39-t0-Faw" secondAttribute="bottom" id="XPj-d8-fNM"/>
+                        <constraint firstItem="e39-t0-Faw" firstAttribute="leading" secondItem="hsa-MY-EBn" secondAttribute="leading" id="a2l-uZ-3yp"/>
+                    </constraints>
+                </view>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iEV-Fv-uVC">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                 </imageView>
             </subviews>
@@ -19,10 +36,15 @@
             <constraints>
                 <constraint firstItem="iEV-Fv-uVC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="3Lf-I7-41q"/>
                 <constraint firstItem="iEV-Fv-uVC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="8B8-Cb-m25"/>
+                <constraint firstItem="hsa-MY-EBn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="PuZ-YQ-uef"/>
+                <constraint firstItem="hsa-MY-EBn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="X8Q-qx-k20"/>
                 <constraint firstAttribute="trailing" secondItem="iEV-Fv-uVC" secondAttribute="trailing" id="hd1-pr-o3w"/>
+                <constraint firstAttribute="bottom" secondItem="hsa-MY-EBn" secondAttribute="bottom" id="hms-da-2He"/>
                 <constraint firstAttribute="bottom" secondItem="iEV-Fv-uVC" secondAttribute="bottom" id="lyU-CN-uin"/>
+                <constraint firstAttribute="trailing" secondItem="hsa-MY-EBn" secondAttribute="trailing" id="r1h-ZJ-hId"/>
             </constraints>
             <connections>
+                <outlet property="bgView" destination="hsa-MY-EBn" id="kbS-fL-c5I"/>
                 <outlet property="imageView" destination="iEV-Fv-uVC" id="gJG-k9-Egw"/>
             </connections>
         </view>

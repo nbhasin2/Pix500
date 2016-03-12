@@ -29,10 +29,16 @@ class GridViewModel
 
 class GridViewController : UIViewController, pxServerConnectionDelegate
 {
+    var horizontalInset = 0.0 as CGFloat
+    var verticalInset = 0.0 as CGFloat
+    
+    var minimumItemWidth = 0.0 as CGFloat
+    var maximumItemWidth = 0.0 as CGFloat
+    var itemHeight = 0.0 as CGFloat
     
     // MARK: - Dummy Data 
     
-    var mutlableImageList = [GridViewModel]()
+//    var mutlableImageList = [GridViewModel]()
     
     //  View Constants
     
@@ -71,16 +77,23 @@ class GridViewController : UIViewController, pxServerConnectionDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        self.serverConnectionHelper = ServerConnectionHelper()
+        self.serverConnectionHelper = ServerConnectionHelper.sharedInstance
         self.serverConnectionHelper?.serverConnectionDelegate = self
         self.initializeView()
         self.serverConnectionHelper?.fetchPhotos()
+        
         
     }
     
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
+        self.navigationController!.navigationBar.hidden = true
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
     }
     
@@ -102,6 +115,24 @@ class GridViewController : UIViewController, pxServerConnectionDelegate
         self.gridCollectionView.reloadData()
     }
     
+}
+
+extension GridViewController : UICollectionViewDelegateFlowLayout
+{
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let picDimension = self.view.frame.size.width / 4.0
+        return CGSizeMake(150, 150)
+    }
+    
+    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
+        let leftRightInset = self.view.frame.size.width / 14.0
+        return UIEdgeInsetsMake(0, leftRightInset, 0, leftRightInset)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+    }
 }
 
 extension GridViewController : UICollectionViewDelegate
@@ -143,6 +174,15 @@ extension GridViewController : UICollectionViewDataSource
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
+        
+        // If its 2nd last cell fetch more data
+        var photolist = self.serverConnectionHelper?.photos
+        
+        if(indexPath.item == ((photolist?.count)! - 4))
+        {
+            self.serverConnectionHelper?.fetchNextPhotoPage()
+        }
+        
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! GridViewCell
         var rowItem = indexPath.row
         cell.thumbnailImage.kf_setImageWithURL((self.serverConnectionHelper?.photos[rowItem].thumbnailUrl)!)

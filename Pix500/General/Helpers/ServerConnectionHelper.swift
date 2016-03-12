@@ -15,15 +15,36 @@ import Foundation
 
 class ServerConnectionHelper {
     
+    static let sharedInstance = ServerConnectionHelper()
+
     var photos = [GridViewModel]()
     weak var serverConnectionDelegate: pxServerConnectionDelegate?
+    var currentPage = 0;
+    var totalPages = 0;
+    
+    let pageString = "&page="
+    
+    func fetchNextPhotoPage()
+    {
+        fetchPhotos(currentPage+1)
+    }
     
     func fetchPhotos()
     {
-        var currentPage = 0;
-        var totalPages = 0;
+        self.fetchPhotos(0)
+    }
+    
+    func fetchPhotos(page:Int)
+    {
+
         
-        request(Method.GET, pxServerFetch)
+        var pageStr = pageString + "\(page)"
+        if page < 2
+        {
+            pageStr = ""
+        }
+        
+        request(Method.GET, pxServerFetch + pageStr)
             .responseJSON { response in
             if let jsonData = response.data
             {
@@ -31,6 +52,8 @@ class ServerConnectionHelper {
                 if let jsonDict = jsonData.json
                 {
                     var jsonDictItem = jsonDict as [String: AnyObject]
+                    self.currentPage = jsonDictItem.intValue("current_page")
+                    self.totalPages = jsonDictItem.intValue("current_page")
                     var a = jsonDictItem["photos"]
                     print(a?.count)
                     for image in a as! [Dictionary<String, AnyObject>]

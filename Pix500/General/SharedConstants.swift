@@ -14,4 +14,4 @@ enum scopeType: String
     case popular = "feature=popular"
 }
 
-let pxServerFetch = "https://api.500px.com/v1/photos?feature=popular&consumer_key=gqRvsm0MwGPteqRO5VetBW8QN0gJNZwHFimqOJX9&image_size[]=440&image_size[]=2048"
+let pxServerFetch = "https://api.500px.com/v1/photos?feature=popular&consumer_key=gqRvsm0MwGPteqRO5VetBW8QN0gJNZwHFimqOJX9&image_size[]=440&image_size[]=2048&rpp=36"

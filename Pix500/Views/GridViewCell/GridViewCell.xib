@@ -8,25 +8,47 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="4Na-mr-uWl" customClass="GridViewCell" customModule="Pix500" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="174" height="125"/>
+            <rect key="frame" x="0.0" y="0.0" width="440" height="400"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="174" height="125"/>
+                <rect key="frame" x="0.0" y="0.0" width="440" height="400"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IYl-d6-fdF">
-                        <rect key="frame" x="0.0" y="0.0" width="174" height="125"/>
+                    <activityIndicatorView contentMode="center" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="uuy-9q-8Sn">
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="400"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </activityIndicatorView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IYl-d6-fdF">
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="400"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </imageView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="uuy-9q-8Sn" secondAttribute="bottom" id="3G3-OM-4lg"/>
                 <constraint firstAttribute="bottom" secondItem="IYl-d6-fdF" secondAttribute="bottom" id="FMl-ah-Bgy"/>
+                <constraint firstAttribute="trailing" secondItem="uuy-9q-8Sn" secondAttribute="trailing" id="TKq-3u-POl"/>
                 <constraint firstItem="IYl-d6-fdF" firstAttribute="leading" secondItem="4Na-mr-uWl" secondAttribute="leading" id="VSs-U3-BDw"/>
                 <constraint firstItem="IYl-d6-fdF" firstAttribute="top" secondItem="4Na-mr-uWl" secondAttribute="top" id="eI9-jx-3C9"/>
+                <constraint firstItem="uuy-9q-8Sn" firstAttribute="top" secondItem="4Na-mr-uWl" secondAttribute="top" id="eYw-7f-xql"/>
+                <constraint firstItem="uuy-9q-8Sn" firstAttribute="leading" secondItem="4Na-mr-uWl" secondAttribute="leading" id="guU-Cc-3yT"/>
+                <constraint firstItem="IYl-d6-fdF" firstAttribute="top" secondItem="4Na-mr-uWl" secondAttribute="top" id="mRZ-RB-A78"/>
+                <constraint firstItem="IYl-d6-fdF" firstAttribute="leading" secondItem="4Na-mr-uWl" secondAttribute="leading" id="xJf-ac-Ggn"/>
+                <constraint firstAttribute="trailing" secondItem="IYl-d6-fdF" secondAttribute="trailing" id="xVv-pA-HdX"/>
+                <constraint firstAttribute="bottom" secondItem="IYl-d6-fdF" secondAttribute="bottom" id="y8D-q3-VMA"/>
                 <constraint firstAttribute="trailing" secondItem="IYl-d6-fdF" secondAttribute="trailing" id="yZ0-VF-lDf"/>
             </constraints>
             <size key="customSize" width="174" height="125"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="FMl-ah-Bgy"/>
+                    <exclude reference="VSs-U3-BDw"/>
+                    <exclude reference="eI9-jx-3C9"/>
+                    <exclude reference="yZ0-VF-lDf"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="thumbnailImage" destination="IYl-d6-fdF" id="8ku-a3-FkE"/>
             </connections>
