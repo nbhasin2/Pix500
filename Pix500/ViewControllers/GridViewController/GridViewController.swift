@@ -17,8 +17,8 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
     
     //  Constants 
     
-    let gridLayoutCellWidth = CGFloat(150)
-    let gridLayoutCellHeight = CGFloat(150)
+    let gridLayoutCellWidth = CGFloat(40)
+    let gridLayoutCellHeight = CGFloat(40)
     let transitionDelegate: TransitioningDelegate = TransitioningDelegate()
     
     //  Variables

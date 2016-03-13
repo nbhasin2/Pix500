@@ -11,12 +11,12 @@ import UIKit
 
 class GalleryItemsLayout: UICollectionViewLayout {
     
-    var horizontalInset = 0.0 as CGFloat
-    var verticalInset = 0.0 as CGFloat
+    var horizontalInset = 5.0 as CGFloat
+    var verticalInset = 5.0 as CGFloat
     
-    var minimumItemWidth = 0.0 as CGFloat
-    var maximumItemWidth = 0.0 as CGFloat
-    var itemHeight = 0.0 as CGFloat
+    var minimumItemWidth = 150.0 as CGFloat
+    var maximumItemWidth = 300.0 as CGFloat
+    var itemHeight = 250.0 as CGFloat
     
     var _layoutAttributes = Dictionary<String, UICollectionViewLayoutAttributes>()
     var _contentSize = CGSizeZero
@@ -26,6 +26,8 @@ class GalleryItemsLayout: UICollectionViewLayout {
     
     override func prepareLayout() {
         super.prepareLayout()
+        
+        self.gridLayoutSetup()
         
         _layoutAttributes = Dictionary<String, UICollectionViewLayoutAttributes>() // 1
         
@@ -108,6 +110,25 @@ class GalleryItemsLayout: UICollectionViewLayout {
     
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
         return !CGSizeEqualToSize(newBounds.size, self.collectionView!.frame.size)
+    }
+    
+    // MARK: - 
+    // MARK: Setup grid layout values based on device type
+    
+    func gridLayoutSetup()
+    {
+        /*** Display the device screen size ***/
+        switch Device.size() {
+        case .Screen3_5Inch, .Screen4Inch, .Screen4_7Inch, .Screen5_5Inch:
+            self.horizontalInset = 5.0 as CGFloat
+            self.verticalInset = 5.0 as CGFloat
+            self.minimumItemWidth = 50.0 as CGFloat
+            self.maximumItemWidth = 100.0 as CGFloat
+            self.itemHeight = 100.0 as CGFloat
+
+        default: break
+            
+        }
     }
     
     // MARK: -
