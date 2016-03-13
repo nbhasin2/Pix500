@@ -53,6 +53,7 @@ class ImageViewController: UICollectionViewController, PXServerConnectionDelegat
         ServerConnectionHelper.sharedInstance.serverConnectionDelegate = self
         
         // View Initialization
+        
         self.initializeView()
         
     }
