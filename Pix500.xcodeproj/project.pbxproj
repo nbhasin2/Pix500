@@ -330,8 +330,8 @@
 		1936D8271C9148CC00B5786E /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
-				19A01C8A1C94A16E004E8079 /* Transition */,
 				19CD36081C9330D500FEBB08 /* GalleryItemsLayout.swift */,
+				19A01C8A1C94A16E004E8079 /* Transition */,
 				198E9B151C91E637003447BD /* Kingfisher */,
 				19FDEC4E1C91CD1C00808CE4 /* Alamofire */,
 			);

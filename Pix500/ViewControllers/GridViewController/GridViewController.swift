@@ -65,6 +65,7 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
         self.collectionView!.collectionViewLayout.invalidateLayout()
         
     }
+    
     //  MARK: - Initializer
     
     private func initializeView()
