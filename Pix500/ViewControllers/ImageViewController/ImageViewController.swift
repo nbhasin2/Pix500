@@ -104,8 +104,8 @@ class ImageViewController: UICollectionViewController, PXServerConnectionDelegat
     
     func doneAction(sender:UIButton!)
     {
+        self.imageViewControllerDelegate?.didDismissImageViewController?(self.currentIndexPosition)
         self.dismissViewControllerAnimated(true, completion: { () -> Void in
-            self.imageViewControllerDelegate?.didDismissImageViewController?(self.currentIndexPosition)
         })
     }
     

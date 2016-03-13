@@ -20,6 +20,10 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
     let gridLayoutCellWidth = CGFloat(150)
     let gridLayoutCellHeight = CGFloat(150)
     let transitionDelegate: TransitioningDelegate = TransitioningDelegate()
+    
+    //  Variables
+    
+    var imageViewContoller: ImageViewController?
 
     //  MARK: - Constructors
     
@@ -96,6 +100,14 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
         {
             self.collectionView?.scrollToItemAtIndexPath(NSIndexPath(forItem: indexLocation, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: false)
         }
+        
+        // Update the Opening Frame for transitioning delegate
+        
+        let attributes = self.collectionView?.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: indexLocation, inSection: 0))
+        let attributesFrame = attributes!.frame
+        let frameToOpenFrom = collectionView!.convertRect(attributesFrame, toView: self.collectionView!.superview)
+        transitionDelegate.openingFrame = frameToOpenFrom
+        self.imageViewContoller?.transitioningDelegate = transitionDelegate
     }
     
 }
@@ -121,21 +133,17 @@ extension GridViewController : UICollectionViewDelegateFlowLayout
     
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-//        let imageViewContoller: ImageViewController = ImageViewController(nibName: "ImageViewController", bundle: nil)
-//        imageViewContoller.scrollItemPosition = indexPath.item
-//        self.navigationController?.pushViewController(imageViewContoller, animated: true)
-        
         let attributes = collectionView.layoutAttributesForItemAtIndexPath(indexPath)
         let attributesFrame = attributes?.frame
         let frameToOpenFrom = collectionView.convertRect(attributesFrame!, toView: collectionView.superview)
         transitionDelegate.openingFrame = frameToOpenFrom
         
-        let imageViewContoller: ImageViewController = ImageViewController(nibName: "ImageViewController", bundle: nil)
-        imageViewContoller.scrollItemPosition = indexPath.item
-        imageViewContoller.transitioningDelegate = transitionDelegate
-        imageViewContoller.modalPresentationStyle = .Custom
-        imageViewContoller.imageViewControllerDelegate = self
-        presentViewController(imageViewContoller, animated: true, completion: nil)
+        self.imageViewContoller = ImageViewController(nibName: "ImageViewController", bundle: nil)
+        imageViewContoller!.scrollItemPosition = indexPath.item
+        imageViewContoller!.transitioningDelegate = transitionDelegate
+        imageViewContoller!.modalPresentationStyle = .Custom
+        imageViewContoller!.imageViewControllerDelegate = self
+        presentViewController(imageViewContoller!, animated: true, completion: nil)
     }
 
     //  MARK: - Collection View Datasource
