@@ -9,6 +9,18 @@
 
 import UIKit
 
+class sizeImage
+{
+    var width: CGFloat = 0 as CGFloat
+    var height: CGFloat = 0 as CGFloat
+    
+    init(width:CGFloat, height:CGFloat)
+    {
+        self.width = width
+        self.height = height
+    }
+}
+
 class GalleryItemsLayout: UICollectionViewLayout {
     
     var horizontalInset = 5.0 as CGFloat
@@ -16,10 +28,12 @@ class GalleryItemsLayout: UICollectionViewLayout {
     
     var minimumItemWidth = 150.0 as CGFloat
     var maximumItemWidth = 300.0 as CGFloat
-    var itemHeight = 250.0 as CGFloat
+    var itemHeight = 100.0 as CGFloat
     
     var _layoutAttributes = Dictionary<String, UICollectionViewLayoutAttributes>()
     var _contentSize = CGSizeZero
+    
+    var imageSizes = [sizeImage?]()
     
     // MARK: -
     // MARK: Layout
@@ -51,11 +65,15 @@ class GalleryItemsLayout: UICollectionViewLayout {
                 var itemSize = CGSizeZero
                 var increaseRow = false
                 
+                
+                
                 if self.collectionView!.frame.size.width - xOffset > self.maximumItemWidth * 1.5 {
-                    itemSize = randomItemSize() // 5
+                    itemSize = randomItemSize(item) // 5
                 } else {
-                    itemSize.width = self.collectionView!.frame.size.width - xOffset - self.horizontalInset
-                    itemSize.height = self.itemHeight
+                    
+                    itemSize = randomItemSize(item)
+//                    itemSize.width = self.collectionView!.frame.size.width - xOffset - self.horizontalInset
+//                    itemSize.height = self.itemHeight
                     increaseRow = true // 6
                 }
                 
@@ -84,7 +102,14 @@ class GalleryItemsLayout: UICollectionViewLayout {
         
     }
     
-    func randomItemSize() -> CGSize {
+    func randomItemSize(item:Int) -> CGSize {
+        if(imageSizes.count > item)
+        {
+            if let imgsize = imageSizes[item]
+            {
+                return CGSizeMake(imgsize.width, self.itemHeight)
+            }
+        }
         return CGSizeMake(getRandomWidth(), self.itemHeight)
     }
     
