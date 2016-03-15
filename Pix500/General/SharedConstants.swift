@@ -14,4 +14,4 @@ let specificPageParam = "&page="
 
 // Fetch Strings Constants 
 
-let pxServerFetch = "https://api.500px.com/v1/photos?&consumer_key=gqRvsm0MwGPteqRO5VetBW8QN0gJNZwHFimqOJX9&image_size[]=440&image_size[]=2048&rpp=36"
+let pxServerFetch = "https://api.500px.com/v1/photos?feature=editors&consumer_key=gqRvsm0MwGPteqRO5VetBW8QN0gJNZwHFimqOJX9&image_size[]=440&image_size[]=2048&rpp=36"
