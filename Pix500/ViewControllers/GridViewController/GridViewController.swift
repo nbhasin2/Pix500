@@ -167,6 +167,15 @@ extension GridViewController : UICollectionViewDelegateFlowLayout
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! GridViewCell
         cell.thumbnailImage.kf_setImageWithURL((ServerConnectionHelper.sharedInstance.photos[indexPath.row].thumbnailUrl))
+        
+//        Uncomment the following line to show the imageview in staggred view with ratio in place
+//        If you won't uncomment the line then grid will be in aspect fill state where images will 
+//        be cropped out. 
+//        Another solution to have full images shown proportinally would be to have fixed height and scale overall image based on that. 
+//        This solution is being worked on another branch called StaggredView. 
+        
+//        cell.thumbnailImage.contentMode = UIViewContentMode.ScaleAspectFit
+        
         cell.backgroundColor = UIColor.blackColor()
         
         return cell
