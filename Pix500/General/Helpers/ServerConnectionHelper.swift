@@ -30,8 +30,8 @@ class ServerConnectionHelper {
     // Number of current and total pages
     // Initially set to 0
     
-    var currentPage = 0;
-    var totalPages = 0;
+    var currentPage = 0
+    var totalPages = 0
     
     
     // Fetches contents of next page
@@ -90,7 +90,7 @@ class ServerConnectionHelper {
                             
                             // Checking if image size equals 440
                             
-                            if (size == 440)
+                            if (size == 2048)
                             {
                                 thumbnailPhoto = httpUrl
                             }

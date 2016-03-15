@@ -17,13 +17,15 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
     
     //  Constants 
     
-    let gridLayoutCellWidth = CGFloat(40)
-    let gridLayoutCellHeight = CGFloat(40)
+    let gridLayoutCellWidth = CGFloat(200)
+    let gridLayoutCellHeight = CGFloat(200)
     let transitionDelegate: TransitioningDelegate = TransitioningDelegate()
     
     //  Variables
     
     var imageViewContoller: ImageViewController?
+    
+    var galleryItemsLayout: GalleryItemsLayout?
 
     //  MARK: - Constructors
     
@@ -70,7 +72,12 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
     
     private func initializeView()
     {
+        // Gallery Items Layout 
+        self.galleryItemsLayout = GalleryItemsLayout()
+        
+        // Setup CollectionView
         self.collectionView?.registerNib((UINib(nibName: "GridViewCell", bundle: nil)), forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView?.setCollectionViewLayout(self.galleryItemsLayout!, animated: true)
         self.collectionView?.scrollEnabled = true
         self.collectionView?.delegate = self
         self.collectionView?.dataSource = self
@@ -120,12 +127,22 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
 extension GridViewController : UICollectionViewDelegateFlowLayout
 {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+//        if(self.imageSizes.count > 0 && self.imageSizes.count < (indexPath.item + 1))
+//        {
+//            if(self.imageSizes[indexPath.row - 1] != nil)
+//            {
+//                return self.imageSizes[indexPath.item - 1]!
+//            }
+//        }
+        
         return CGSizeMake(gridLayoutCellWidth, gridLayoutCellHeight)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
+//        print(self.collectionView?.frame.size)
         // Setup server connection delegate
         ServerConnectionHelper.sharedInstance.serverConnectionDelegate = self
     }
@@ -167,6 +184,28 @@ extension GridViewController : UICollectionViewDelegateFlowLayout
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! GridViewCell
         cell.thumbnailImage.kf_setImageWithURL((ServerConnectionHelper.sharedInstance.photos[indexPath.row].thumbnailUrl))
+        KingfisherManager.sharedManager.retrieveImageWithURL(ServerConnectionHelper.sharedInstance.photos[indexPath.row].thumbnailUrl, optionsInfo: nil, progressBlock: nil, completionHandler: { (image, error, cacheType, imageURL) -> () in
+            print(image?.size)
+
+            var imgSize = image?.size
+            var aspectRatio = (imgSize?.width)! / (imgSize?.height)!
+            var frame = cell.thumbnailImage.frame
+            if(200 / aspectRatio <= 100)
+            {
+                frame.size.width = 100
+                frame.size.height = frame.size.width / aspectRatio
+            }
+            else
+            {
+                frame.size.height = 100
+                frame.size.width = frame.size.height / aspectRatio
+            }
+//            self.imageSizes.append(CGSize(width: frame.size.width, height: frame.size.height))
+            self.galleryItemsLayout?.imageSizes.append(sizeImage(width: frame.size.width, height: frame.size.height))
+            self.collectionView?.collectionViewLayout.invalidateLayout()
+//            cell.thumbnailImage.image = image
+        })
+        
         cell.backgroundColor = UIColor.blackColor()
         
         return cell

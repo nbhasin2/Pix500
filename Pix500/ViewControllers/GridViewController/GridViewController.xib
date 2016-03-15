@@ -15,7 +15,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yoy-hM-Gdo" customClass="GalleryItemsLayout" customModule="Pix500" customModuleProvider="target">
+            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="yoy-hM-Gdo">
                 <size key="itemSize" width="50" height="50"/>
                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
