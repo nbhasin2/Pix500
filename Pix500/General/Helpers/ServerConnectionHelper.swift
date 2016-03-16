@@ -40,7 +40,7 @@ class ServerConnectionHelper {
     {
         if(currentPage != 0)
         {
-            fetchPhotos(currentPage+1)
+            fetchPhotos(currentPage+1, block: nil)
         }
     }
     
@@ -49,13 +49,13 @@ class ServerConnectionHelper {
     
     func fetchFirstPhotoPage()
     {
-        self.fetchPhotos(0)
+        self.fetchPhotos(0, block: nil)
     }
     
     // Fetches photo page and updates the photos array.
     // Takes in the page number to fetch from server.
     
-    func fetchPhotos(page:Int)
+    func fetchPhotos(page:Int, block: ((totalExpectedItems:Int) -> Void)?)
     {
         var specificPage = specificPageParam + "\(page)"
         if page < 2
@@ -107,9 +107,15 @@ class ServerConnectionHelper {
                     
                 }
                 
+                if let totalItems = block{
+                    
+                    totalItems(totalExpectedItems: self.photos.count)
+                }
+                
                 // Finished fetching photo data. Send delegate call back. 
                 
                 self.serverConnectionDelegate?.didEndFetchingPhotos?()
+                
                 
                 if let jsonArray = jsonData.jsonArray
                 {
