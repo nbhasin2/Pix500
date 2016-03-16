@@ -30,33 +30,57 @@ class ServerConnectionHelper {
     // Number of current and total pages
     // Initially set to 0
     
-    var currentPage = 0;
-    var totalPages = 0;
+    var currentPage = -1;
+    var totalPages = -1;
     
+    // This method will fetch all the pages begining from 0
+    // To total number of pages
+    
+    func fetchAllPages()
+    {
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            self.fetchPhotos(0, parseInfinitely: true, block: nil)
+        }
+    }
     
     // Fetches contents of next page
+    // Returns false if there are no pages available to be fetched
     
-    func fetchNextPhotoPage()
+    func fetchNextPhotoPage()->Bool
     {
         if(currentPage != 0)
         {
-            fetchPhotos(currentPage+1, block: nil)
+            return fetchPhotos(currentPage+1, block: nil)
         }
+        
+        return false
     }
     
     // Fetches the first photo page
     // Calls fetchPhotos that takes in the initial page number (0)
+    // Returns false if there are no pages available to fetch
     
-    func fetchFirstPhotoPage()
+    func fetchFirstPhotoPage()->Bool
     {
-        self.fetchPhotos(0, block: nil)
+        return self.fetchPhotos(0, block: nil)
     }
     
     // Fetches photo page and updates the photos array.
     // Takes in the page number to fetch from server.
+    // parseInfinitely fetches and parses the json recursively
     
-    func fetchPhotos(page:Int, block: ((totalExpectedItems:Int) -> Void)?)
+    func fetchPhotos(page:Int, parseInfinitely:Bool = false, block: ((totalExpectedItems:Int) -> Void)?)->Bool
     {
+        // Check if reached total pages 
+        
+        if(page >= self.totalPages && self.totalPages > 0)
+        {
+            return false
+        }
+        
+        // Fetch next page 
+        
         var specificPage = specificPageParam + "\(page)"
         if page < 2
         {
@@ -74,7 +98,7 @@ class ServerConnectionHelper {
                 {
                     let jsonDictionaryItem = jsonDictionary as [String: AnyObject]
                     self.currentPage = jsonDictionaryItem.intValue("current_page")
-                    self.totalPages = jsonDictionaryItem.intValue("current_page")
+                    self.totalPages = jsonDictionaryItem.intValue("total_pages")
                     
                     let photoListData = jsonDictionaryItem["photos"]
 
@@ -114,8 +138,16 @@ class ServerConnectionHelper {
                 
                 // Finished fetching photo data. Send delegate call back. 
                 
-                self.serverConnectionDelegate?.didEndFetchingPhotos?()
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.serverConnectionDelegate?.didEndFetchingPhotos?()
+                }
                 
+                // Infinitely parse items until the value is true.
+                
+                if (parseInfinitely)
+                {
+                    self.fetchPhotos(self.currentPage+1, parseInfinitely: true, block: nil)
+                }
                 
                 if let jsonArray = jsonData.jsonArray
                 {
@@ -123,5 +155,7 @@ class ServerConnectionHelper {
                 }
             }
         }
+        
+        return true
     }
 }
