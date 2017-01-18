@@ -11,14 +11,14 @@ import UIKit
 /// Protocol of `ImageDownloader`.
 @objc public protocol PXImageViewControllerDelegate
 {
-    optional func didDismissImageViewController(indexLocation:Int)
+    @objc optional func didDismissImageViewController(indexLocation:Int)
 }
 
 class ImageViewController: UICollectionViewController, PXServerConnectionDelegate
 {
     //  Cell Identifiers
     
-    private let reuseIdentifier = "ImageViewBasicCell"
+    fileprivate let reuseIdentifier = "ImageViewBasicCell"
     
     // Variables
     
@@ -32,7 +32,7 @@ class ImageViewController: UICollectionViewController, PXServerConnectionDelegat
     
     //  MARK: - Constructors
     
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: Bundle!)
     {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -58,13 +58,13 @@ class ImageViewController: UICollectionViewController, PXServerConnectionDelegat
         
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
     }
@@ -73,29 +73,29 @@ class ImageViewController: UICollectionViewController, PXServerConnectionDelegat
     
     private func initializeView()
     {
-        self.collectionView?.registerNib((UINib(nibName: "ImageViewCell", bundle: nil)), forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView?.register((UINib(nibName: "ImageViewCell", bundle: nil)), forCellWithReuseIdentifier: reuseIdentifier)
         
         // Flow Layout Setup
         
         let flowlayout = UICollectionViewFlowLayout()
-        flowlayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
+        flowlayout.scrollDirection = UICollectionViewScrollDirection.horizontal
         flowlayout.minimumInteritemSpacing = 0
         flowlayout.minimumLineSpacing = 0
         
         self.automaticallyAdjustsScrollViewInsets = false
         self.collectionView?.setCollectionViewLayout(flowlayout, animated: true)
-        self.collectionView?.pagingEnabled = true
-        self.collectionView?.scrollEnabled = true
+        self.collectionView?.isPagingEnabled = true
+        self.collectionView?.isScrollEnabled = true
         self.collectionView?.delegate = self
         self.collectionView?.dataSource = self
      
         // Dismiss Button
         
-        let button   = UIButton(type: UIButtonType.System) as UIButton
-        button.frame = CGRectMake(0, 0, 70, 50)
-        button.tintColor = UIColor.whiteColor()
-        button.setTitle("Done", forState: UIControlState.Normal)
-        button.addTarget(self, action: "doneAction:", forControlEvents: UIControlEvents.TouchUpInside)
+        let button   = UIButton(type: UIButtonType.system) as UIButton
+        button.frame = CGRect(x: 0, y: 0, width: 70, height: 50)
+        button.tintColor = UIColor.white
+        button.setTitle("Done", for: UIControlState.normal)
+        button.addTarget(self, action: "doneAction:", for: UIControlEvents.touchUpInside)
         
         self.view.addSubview(button)
 
@@ -105,8 +105,8 @@ class ImageViewController: UICollectionViewController, PXServerConnectionDelegat
     
     func doneAction(sender:UIButton!)
     {
-        self.imageViewControllerDelegate?.didDismissImageViewController?(self.currentIndexPosition)
-        self.dismissViewControllerAnimated(true, completion: { () -> Void in
+        self.imageViewControllerDelegate?.didDismissImageViewController?(indexLocation: self.currentIndexPosition)
+        self.dismiss(animated: true, completion: { () -> Void in
         })
     }
     
@@ -117,19 +117,25 @@ class ImageViewController: UICollectionViewController, PXServerConnectionDelegat
         self.collectionView?.reloadData()
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         //This is necessary for the layout to honor "itemsPerRow"
         self.collectionView!.collectionViewLayout.invalidateLayout()
-        
     }
     
+//    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+//        
+//        //This is necessary for the layout to honor "itemsPerRow"
+//        self.collectionView!.collectionViewLayout.invalidateLayout()
+//        
+//    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if(self.didScrollOnce == false)
         {
             self.currentIndexPosition = self.scrollItemPosition
-            self.collectionView?.scrollToItemAtIndexPath(NSIndexPath(forItem: self.scrollItemPosition, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: false)
+            var indexPath = IndexPath(item: self.scrollItemPosition, section: 0)
+            self.collectionView?.scrollToItem(at: indexPath, at: UICollectionViewScrollPosition.centeredHorizontally, animated: false)
             self.didScrollOnce = true
         }
     }
@@ -148,13 +154,12 @@ extension ImageViewController : UICollectionViewDelegateFlowLayout
 
     //  MARK: - Collection View Datasource
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return ServerConnectionHelper.sharedInstance.photos.count
     }
     
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
-    {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // If its last cell fetch more data
         
@@ -169,16 +174,22 @@ extension ImageViewController : UICollectionViewDelegateFlowLayout
     
         // Configure cell
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! ImageViewCell
-        cell.imageView.kf_setImageWithURL((ServerConnectionHelper.sharedInstance.photos[indexPath.item].highResolutionUrl))
-        cell.backgroundColor = UIColor.blackColor()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ImageViewCell
+        
+        let url = ServerConnectionHelper.sharedInstance.photos[indexPath.item].highResolutionUrl!
+        
+        cell.imageView.kf.setImage(with: url)
+        
+//        cell.imageView.kf.setImage(with: <#T##Resource?#>)
+//        
+//            cell.imageView.kf_setImageWithURL((ServerConnectionHelper.sharedInstance.photos[indexPath.item].highResolutionUrl))
+        cell.backgroundColor = UIColor.black
         
         return cell
         
     }
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
-    {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 }

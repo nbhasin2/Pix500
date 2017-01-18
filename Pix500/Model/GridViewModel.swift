@@ -7,18 +7,18 @@
 //
 
 import Foundation
+import Alamofire
 
 class GridViewModel
 {
     // Saves image url
-    
-    var thumbnailUrl = NSURL()
-    var highResolutionUrl = NSURL()
+    var thumbnailUrl:URL?
+    var highResolutionUrl:URL?
     
     convenience init(thumbnail:String, highresolution:String)
     {
         self.init()
-        thumbnailUrl = NSURL(string: thumbnail)!
-        highResolutionUrl = NSURL(string: highresolution)!
+        thumbnailUrl = URL(string: thumbnail)!
+        highResolutionUrl = URL(string: highresolution)!
     }
 }

@@ -13,7 +13,7 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
 {
     //  Cell Identifiers
     
-    private let reuseIdentifier = "GridViewBasicCell"
+    fileprivate let reuseIdentifier = "GridViewBasicCell"
     
     //  Constants 
     
@@ -27,7 +27,7 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
 
     //  MARK: - Constructors
     
-    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: Bundle!)
     {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
@@ -47,36 +47,47 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
         ServerConnectionHelper.sharedInstance.fetchFirstPhotoPage()
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
-        self.navigationController!.navigationBar.hidden = true
+        self.navigationController!.navigationBar.isHidden = true
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
     }
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         // This line fixes a bug related to collectionview not having correct frame. Even though the view frame is correct but collectionview
         // has incorrect frame values. This is why we make sure the frame is correct to handle view rotations.
         
-        self.collectionView?.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, size.width, size.height)
-        
+        self.collectionView?.frame = CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y, width: size.width, height: size.height)
+            
         // This is necessary for the layout to honor "itemsPerRow"
         self.collectionView!.collectionViewLayout.invalidateLayout()
-        
     }
     
+//    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+//        
+//        // This line fixes a bug related to collectionview not having correct frame. Even though the view frame is correct but collectionview
+//        // has incorrect frame values. This is why we make sure the frame is correct to handle view rotations.
+//        
+//        self.collectionView?.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, size.width, size.height)
+//        
+//        // This is necessary for the layout to honor "itemsPerRow"
+//        self.collectionView!.collectionViewLayout.invalidateLayout()
+//        
+//    }
+//    
     //  MARK: - Initializer
     
     private func initializeView()
     {
-        self.collectionView?.registerNib((UINib(nibName: "GridViewCell", bundle: nil)), forCellWithReuseIdentifier: reuseIdentifier)
-        self.collectionView?.scrollEnabled = true
+        self.collectionView?.register((UINib(nibName: "GridViewCell", bundle: nil)), forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView?.isScrollEnabled = true
         self.collectionView?.delegate = self
         self.collectionView?.dataSource = self
     }
@@ -94,24 +105,26 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
     {
         // Reload Data
         
-        if (self.collectionView?.numberOfItemsInSection(0) < ServerConnectionHelper.sharedInstance.photos.count)
+        if ((self.collectionView?.numberOfItems(inSection: 0))! < ServerConnectionHelper.sharedInstance.photos.count)
         {
             self.collectionView?.reloadData()
         }
         
         // Check if cell is visible in the view
         
-        let visisbleIndexPathList = self.collectionView?.indexPathsForVisibleItems()
-        if (visisbleIndexPathList?.contains(NSIndexPath(forItem: indexLocation, inSection: 0)) == false)
-        {
-            self.collectionView?.scrollToItemAtIndexPath(NSIndexPath(forItem: indexLocation, inSection: 0), atScrollPosition: UICollectionViewScrollPosition.CenteredVertically, animated: false)
+        let visisbleIndexPathList = self.collectionView?.indexPathsForVisibleItems
+        
+        if(visisbleIndexPathList?.contains(IndexPath(item: indexLocation, section: 0)))! {
+            self.collectionView?.scrollToItem(at: IndexPath(item: indexLocation, section: 0), at: UICollectionViewScrollPosition.centeredVertically, animated: false)
         }
         
         // Update the Opening Frame for transitioning delegate
         
-        let attributes = self.collectionView?.layoutAttributesForItemAtIndexPath(NSIndexPath(forItem: indexLocation, inSection: 0))
+        let attributes = self.collectionView?.layoutAttributesForItem(at: IndexPath(item: indexLocation, section: 0))
+        
         let attributesFrame = attributes!.frame
-        let frameToOpenFrom = collectionView!.convertRect(attributesFrame, toView: self.collectionView!.superview)
+        
+        let frameToOpenFrom = collectionView!.convert(attributesFrame, to: self.collectionView!.superview)
         transitionDelegate.openingFrame = frameToOpenFrom
         self.imageViewContoller?.transitioningDelegate = transitionDelegate
     }
@@ -125,7 +138,9 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
 extension GridViewController : UICollectionViewDelegateFlowLayout
 {
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(gridLayoutCellWidth, gridLayoutCellHeight)
+        
+       
+        return CGSize(width: gridLayoutCellWidth, height: gridLayoutCellHeight)
     }
     
     override func viewDidLayoutSubviews() {
@@ -137,30 +152,29 @@ extension GridViewController : UICollectionViewDelegateFlowLayout
 
     //  MARK: - Collection View Delegate
     
-    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
-    {
-        let attributes = collectionView.layoutAttributesForItemAtIndexPath(indexPath)
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        let attributes = collectionView.layoutAttributesForItem(at: indexPath as IndexPath)
         let attributesFrame = attributes?.frame
-        let frameToOpenFrom = collectionView.convertRect(attributesFrame!, toView: collectionView.superview)
+        let frameToOpenFrom = collectionView.convert(attributesFrame!, to: collectionView.superview)
         transitionDelegate.openingFrame = frameToOpenFrom
         
         self.imageViewContoller = ImageViewController(nibName: "ImageViewController", bundle: nil)
         imageViewContoller!.scrollItemPosition = indexPath.item
         imageViewContoller!.transitioningDelegate = transitionDelegate
-        imageViewContoller!.modalPresentationStyle = .Custom
+        imageViewContoller!.modalPresentationStyle = .custom
         imageViewContoller!.imageViewControllerDelegate = self
-        presentViewController(imageViewContoller!, animated: true, completion: nil)
+        present(imageViewContoller!, animated: true, completion: nil)
     }
 
     //  MARK: - Collection View Datasource
     
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return ServerConnectionHelper.sharedInstance.photos.count
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
-    {
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         // Fetch more content
         
         if(indexPath.item == ((ServerConnectionHelper.sharedInstance.photos.count) - 1))
@@ -170,8 +184,11 @@ extension GridViewController : UICollectionViewDelegateFlowLayout
         
         // Configure cell
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! GridViewCell
-        cell.thumbnailImage.kf_setImageWithURL((ServerConnectionHelper.sharedInstance.photos[indexPath.row].thumbnailUrl))
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath as IndexPath) as! GridViewCell
+        
+        cell.thumbnailImage.kf.setImage(with: ServerConnectionHelper.sharedInstance.photos[indexPath.row].thumbnailUrl)
+        
+//        cell.thumbnailImage.kf_setImageWithURL((ServerConnectionHelper.sharedInstance.photos[indexPath.row].thumbnailUrl))
         
 //        Uncomment the following line to show the imageview in staggred view with ratio in place
 //        If you won't uncomment the line then grid will be in aspect fill state where images will 
@@ -181,14 +198,13 @@ extension GridViewController : UICollectionViewDelegateFlowLayout
         
 //        cell.thumbnailImage.contentMode = UIViewContentMode.ScaleAspectFit
         
-        cell.backgroundColor = UIColor.blackColor()
+        cell.backgroundColor = UIColor.black
         
         return cell
 
     }
     
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int
-    {
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 }

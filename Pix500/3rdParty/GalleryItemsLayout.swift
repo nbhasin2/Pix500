@@ -19,36 +19,36 @@ class GalleryItemsLayout: UICollectionViewLayout {
     var itemHeight = 250.0 as CGFloat
     
     var _layoutAttributes = Dictionary<String, UICollectionViewLayoutAttributes>()
-    var _contentSize = CGSizeZero
+    var _contentSize = CGSize.zero
     
     // MARK: -
     // MARK: Layout
     
-    override func prepareLayout() {
-        super.prepareLayout()
+    override func prepare() {
+        super.prepare()
         
         self.gridLayoutSetup()
         
         _layoutAttributes = Dictionary<String, UICollectionViewLayoutAttributes>() // 1
         
-        let headerHeight = UIApplication.sharedApplication().statusBarFrame.size.height
+        let headerHeight = UIApplication.shared.statusBarFrame.size.height
         
-        let numberOfSections = self.collectionView!.numberOfSections() // 3
+        let numberOfSections = self.collectionView!.numberOfSections // 3
         
         var yOffset = headerHeight
         
-        for var section = 0; section < numberOfSections; section++ {
+        for section in 0 ..< numberOfSections {
             
-            let numberOfItems = self.collectionView!.numberOfItemsInSection(section) // 3
+            let numberOfItems = self.collectionView!.numberOfItems(inSection: section) // 3
             
             var xOffset = self.horizontalInset
             
-            for var item = 0; item < numberOfItems; item++ {
+            for item in 0 ..< numberOfItems {
                 
-                let indexPath = NSIndexPath(forItem: item, inSection: section)
-                let attributes = UICollectionViewLayoutAttributes(forCellWithIndexPath: indexPath) // 4
+                let indexPath = IndexPath(item: item, section: section)
+                let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath) // 4
                 
-                var itemSize = CGSizeZero
+                var itemSize = CGSize.zero
                 var increaseRow = false
                 
                 if self.collectionView!.frame.size.width - xOffset > self.maximumItemWidth * 1.5 {
@@ -59,8 +59,9 @@ class GalleryItemsLayout: UICollectionViewLayout {
                     increaseRow = true // 6
                 }
                 
-                attributes.frame = CGRectIntegral(CGRectMake(xOffset, yOffset, itemSize.width, itemSize.height))
-                let key = layoutKeyForIndexPath(indexPath)
+                
+                attributes.frame = CGRect(x: xOffset, y: yOffset, width: itemSize.width, height: itemSize.height).integral
+                let key = layoutKeyForIndexPath(indexPath: indexPath as NSIndexPath)
                 _layoutAttributes[key] = attributes // 7
                 
                 xOffset += itemSize.width
@@ -80,12 +81,12 @@ class GalleryItemsLayout: UICollectionViewLayout {
         
         yOffset += self.itemHeight // 10
         
-        _contentSize = CGSizeMake(self.collectionView!.frame.size.width, yOffset + self.verticalInset) // 11
+        _contentSize = CGSize(width: self.collectionView!.frame.size.width, height: yOffset + self.verticalInset) // 11
         
     }
     
     func randomItemSize() -> CGSize {
-        return CGSizeMake(getRandomWidth(), self.itemHeight)
+        return CGSize(width: getRandomWidth(), height: self.itemHeight)
     }
     
     func getRandomWidth() -> CGFloat {
@@ -108,8 +109,8 @@ class GalleryItemsLayout: UICollectionViewLayout {
     // MARK: -
     // MARK: Invalidate
     
-    override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
-        return !CGSizeEqualToSize(newBounds.size, self.collectionView!.frame.size)
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+        return !newBounds.size.equalTo(self.collectionView!.frame.size)
     }
     
     // MARK: - 
@@ -133,36 +134,51 @@ class GalleryItemsLayout: UICollectionViewLayout {
     
     // MARK: -
     // MARK: Required methods
-    
-    override func collectionViewContentSize() -> CGSize {
-        return _contentSize
+
+    override var collectionViewContentSize: CGSize{
+        get {
+            return _contentSize
+        }
     }
     
-    
-    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        let key = layoutKeyForIndexPath(indexPath)
+//    override func collectionViewContentSize() -> CGSize {
+//        return _contentSize
+//    }
+    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        let key = layoutKeyForIndexPath(indexPath: indexPath as NSIndexPath)
         return _layoutAttributes[key]
     }
+    
+//    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+//        let key = layoutKeyForIndexPath(indexPath)
+//        return _layoutAttributes[key]
+//    }
 
-    override func layoutAttributesForDecorationViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-        let headerKey = layoutKeyForIndexPath(indexPath)
+    override func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+        let headerKey = layoutKeyForIndexPath(indexPath: indexPath as NSIndexPath)
         return _layoutAttributes[headerKey]
+
     }
     
+//    override func layoutAttributesForDecorationViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
+//        let headerKey = layoutKeyForIndexPath(indexPath)
+//        return _layoutAttributes[headerKey]
+//    }
     
     
-    override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         
         let predicate = NSPredicate {  [unowned self] (evaluatedObject, bindings) -> Bool in
             let layoutAttribute = self._layoutAttributes[evaluatedObject as! String]
-            return CGRectIntersectsRect(rect, layoutAttribute!.frame)
+            return rect.intersects(layoutAttribute!.frame)
         }
         
         let dict = _layoutAttributes as NSDictionary
         let keys = dict.allKeys as NSArray
-        let matchingKeys = keys.filteredArrayUsingPredicate(predicate)
+        let matchingKeys = keys.filtered(using: predicate)
         
-        return dict.objectsForKeys(matchingKeys, notFoundMarker: NSNull()) as? [UICollectionViewLayoutAttributes]
+        return dict.objects(forKeys: matchingKeys, notFoundMarker: NSNull()) as? [UICollectionViewLayoutAttributes]
     }
 
 }

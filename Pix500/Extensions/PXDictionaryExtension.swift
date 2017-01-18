@@ -15,8 +15,10 @@ extension Dictionary {
     var jsonString: String {
         do
         {
-            let stringData = try NSJSONSerialization.dataWithJSONObject(self as! AnyObject, options: .PrettyPrinted)
-            if let string = String(data: stringData, encoding: NSUTF8StringEncoding)
+            
+            
+            let stringData = try JSONSerialization.data(withJSONObject: self, options: .prettyPrinted)
+            if let string = String(data: stringData, encoding: String.Encoding.utf8)
             {
                 return string
             }

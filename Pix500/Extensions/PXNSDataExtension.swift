@@ -8,13 +8,13 @@
 
 import Foundation
 
-extension NSData {
+extension Data {
     
     /// Attempts to parse data into an array of JSON dictionaries.
     var jsonArray: [[String: AnyObject]]? {
         do
         {
-            if let parsed = try NSJSONSerialization.JSONObjectWithData(self, options: NSJSONReadingOptions.AllowFragments) as? [[String: AnyObject]]
+            if let parsed = try JSONSerialization.jsonObject(with: self as Data, options: JSONSerialization.ReadingOptions.allowFragments) as? [[String: AnyObject]]
             {
                 return parsed
             }
@@ -31,7 +31,7 @@ extension NSData {
     var json: [String: AnyObject]? {
         do
         {
-            if let parsed = try NSJSONSerialization.JSONObjectWithData(self, options: NSJSONReadingOptions.AllowFragments) as? [String: AnyObject]
+            if let parsed = try JSONSerialization.jsonObject(with: self as Data, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: AnyObject]
             {
                 return parsed
             }

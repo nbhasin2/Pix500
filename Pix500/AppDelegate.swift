@@ -59,11 +59,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.navController = UINavigationController(rootViewController: gridViewController)
 
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
         
         self.window!.rootViewController = navController
         
-        self.window!.backgroundColor = UIColor.blackColor()
+        self.window!.backgroundColor = UIColor.black
         
         self.window!.makeKeyAndVisible()
     }
