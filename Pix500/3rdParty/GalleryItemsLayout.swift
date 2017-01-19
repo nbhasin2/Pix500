@@ -8,6 +8,7 @@
 //
 
 import UIKit
+import Device
 
 class GalleryItemsLayout: UICollectionViewLayout {
     
@@ -120,7 +121,7 @@ class GalleryItemsLayout: UICollectionViewLayout {
     {
         /*** Display the device screen size ***/
         switch Device.size() {
-        case .Screen3_5Inch, .Screen4Inch, .Screen4_7Inch, .Screen5_5Inch:
+        case .screen3_5Inch, .screen4Inch, .screen4_7Inch, .screen5_5Inch:
             self.horizontalInset = 5.0 as CGFloat
             self.verticalInset = 5.0 as CGFloat
             self.minimumItemWidth = 50.0 as CGFloat
@@ -141,32 +142,17 @@ class GalleryItemsLayout: UICollectionViewLayout {
         }
     }
     
-//    override func collectionViewContentSize() -> CGSize {
-//        return _contentSize
-//    }
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let key = layoutKeyForIndexPath(indexPath: indexPath as NSIndexPath)
         return _layoutAttributes[key]
     }
     
-//    override func layoutAttributesForItemAtIndexPath(indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-//        let key = layoutKeyForIndexPath(indexPath)
-//        return _layoutAttributes[key]
-//    }
-
     override func layoutAttributesForDecorationView(ofKind elementKind: String, at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let headerKey = layoutKeyForIndexPath(indexPath: indexPath as NSIndexPath)
         return _layoutAttributes[headerKey]
 
     }
-    
-//    override func layoutAttributesForDecorationViewOfKind(elementKind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionViewLayoutAttributes? {
-//        let headerKey = layoutKeyForIndexPath(indexPath)
-//        return _layoutAttributes[headerKey]
-//    }
-    
-    
-    
+
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         
         let predicate = NSPredicate {  [unowned self] (evaluatedObject, bindings) -> Bool in

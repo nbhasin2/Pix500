@@ -70,18 +70,6 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
         self.collectionView!.collectionViewLayout.invalidateLayout()
     }
     
-//    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-//        
-//        // This line fixes a bug related to collectionview not having correct frame. Even though the view frame is correct but collectionview
-//        // has incorrect frame values. This is why we make sure the frame is correct to handle view rotations.
-//        
-//        self.collectionView?.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, size.width, size.height)
-//        
-//        // This is necessary for the layout to honor "itemsPerRow"
-//        self.collectionView!.collectionViewLayout.invalidateLayout()
-//        
-//    }
-//    
     //  MARK: - Initializer
     
     private func initializeView()
@@ -198,7 +186,7 @@ extension GridViewController : UICollectionViewDelegateFlowLayout
         
 //        cell.thumbnailImage.contentMode = UIViewContentMode.ScaleAspectFit
         
-        cell.backgroundColor = UIColor.black
+        cell.backgroundColor = UIColor.white
         
         return cell
 

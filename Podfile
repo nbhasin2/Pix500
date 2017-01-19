@@ -7,6 +7,7 @@ target 'Pix500' do
 
   # Pods for Pix500
   pod 'Alamofire', '~> 4.0'
+  pod 'Device', '~> 2.0.1'
 
   target 'Pix500Tests' do
     inherit! :search_paths

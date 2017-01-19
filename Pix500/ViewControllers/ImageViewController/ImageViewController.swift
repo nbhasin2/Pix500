@@ -122,13 +122,6 @@ class ImageViewController: UICollectionViewController, PXServerConnectionDelegat
         self.collectionView!.collectionViewLayout.invalidateLayout()
     }
     
-//    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-//        
-//        //This is necessary for the layout to honor "itemsPerRow"
-//        self.collectionView!.collectionViewLayout.invalidateLayout()
-//        
-//    }
-
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if(self.didScrollOnce == false)
@@ -142,8 +135,6 @@ class ImageViewController: UICollectionViewController, PXServerConnectionDelegat
 }
 
 //  MARK: - Collection Datasoure | Delegate | Flowlayout
-
-// ImageViewController Extension with UICollectionViewDelegateFlowLayout, Collection Datasource and Collection Delegate related methods methods
 
 extension ImageViewController : UICollectionViewDelegateFlowLayout
 {
@@ -180,9 +171,6 @@ extension ImageViewController : UICollectionViewDelegateFlowLayout
         
         cell.imageView.kf.setImage(with: url)
         
-//        cell.imageView.kf.setImage(with: <#T##Resource?#>)
-//        
-//            cell.imageView.kf_setImageWithURL((ServerConnectionHelper.sharedInstance.photos[indexPath.item].highResolutionUrl))
         cell.backgroundColor = UIColor.black
         
         return cell
