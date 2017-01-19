@@ -23,18 +23,19 @@ class DismissalAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         
         let animationDuration = self .transitionDuration(using: transitionContext)
         
-        let snapshotView = fromViewController.view.resizableSnapshotView(from: fromViewController.view.bounds, afterScreenUpdates: true, withCapInsets: UIEdgeInsetsZero)
+        let snapshotView = fromViewController.view.resizableSnapshotView(from: fromViewController.view.bounds, afterScreenUpdates: true, withCapInsets: UIEdgeInsets.zero)
+        
         containerView.addSubview(snapshotView!)
         
         fromViewController.view.alpha = 0.0
         
-        UIView.animateWithDuration(animationDuration, animations: { () -> Void in
-                snapshotView.frame = self.openingFrame!
-                snapshotView.alpha = 0.0
+        UIView.animate(withDuration: animationDuration, animations: { () -> Void in
+                snapshotView?.frame = self.openingFrame!
+                snapshotView?.alpha = 0.0
             }) { (finished) -> Void in
-                snapshotView.removeFromSuperview()
+                snapshotView?.removeFromSuperview()
                 fromViewController.view.removeFromSuperview()
-                transitionContext.completeTransition(!transitionContext.transitionWasCancelled())
+                transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
 }

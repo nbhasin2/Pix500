@@ -11,14 +11,14 @@ import UIKit
 class TransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
    
     var openingFrame: CGRect?
-    
-    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+   
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         let presentationAnimator = PresentationAnimator()
         presentationAnimator.openingFrame = openingFrame!
         return presentationAnimator
     }
     
-    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         let dismissAnimator = DismissalAnimator()
         dismissAnimator.openingFrame = openingFrame!
         return dismissAnimator

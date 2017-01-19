@@ -4,7 +4,7 @@
 //
 //  Created by Lucas Ortis on 30/10/2015.
 //  Copyright © 2015 Ekhoo. All rights reserved.
-//  https://github.com/Ekhoo/Device
+//
 
 public enum Version: String {
     /*** iPhone ***/
@@ -17,6 +17,9 @@ public enum Version: String {
     case iPhone6Plus
     case iPhone6S
     case iPhone6SPlus
+    case iPhoneSE
+    case iPhone7
+    case iPhone7Plus
     
     /*** iPad ***/
     case iPad1

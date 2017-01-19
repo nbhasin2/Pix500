@@ -44,11 +44,6 @@ class ServerConnectionHelper {
         globalQueue.async {
              self.fetchPhotos(page: 0, parseInfinitely: true, block: nil)
         }
-        
-//        let priority = DispatchQueue.GlobalQueuePriority.default
-//        dispatch_async(dispatch_get_global_queue(priority, 0)) {
-//            self.fetchPhotos(0, parseInfinitely: true, block: nil)
-//        }
     }
     
     // Fetches contents of next page
@@ -96,11 +91,7 @@ class ServerConnectionHelper {
         
         // Creating request to fetch the page
         
-        Alamofire.request(pxServerFetch + specificPage, method: .get)
-        
-//        Alamofire.request(Method.GET, method: pxServerFetch + specificPage)    
-//        request(Method.GET, method: pxServerFetch + specificPage)
-            .responseJSON { response in
+        Alamofire.request(pxServerFetch + specificPage, method: .get).responseJSON { response in
             if let jsonData = response.data
             {
                 

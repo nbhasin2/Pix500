@@ -19,11 +19,11 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
     
     let gridLayoutCellWidth = CGFloat(40)
     let gridLayoutCellHeight = CGFloat(40)
-    let transitionDelegate: TransitioningDelegate = TransitioningDelegate()
+    var transitionDelegate: TransitioningDelegate = TransitioningDelegate()
     
     //  Variables
     
-    var imageViewContoller: ImageViewController?
+    fileprivate var imageViewContoller: ImageViewController?
 
     //  MARK: - Constructors
     
@@ -59,8 +59,9 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
         
     }
     
+   
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        
+        super.viewWillTransition(to: size, with: coordinator)
         // This line fixes a bug related to collectionview not having correct frame. Even though the view frame is correct but collectionview
         // has incorrect frame values. This is why we make sure the frame is correct to handle view rotations.
         
@@ -70,18 +71,6 @@ class GridViewController : UICollectionViewController, PXServerConnectionDelegat
         self.collectionView!.collectionViewLayout.invalidateLayout()
     }
     
-//    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-//        
-//        // This line fixes a bug related to collectionview not having correct frame. Even though the view frame is correct but collectionview
-//        // has incorrect frame values. This is why we make sure the frame is correct to handle view rotations.
-//        
-//        self.collectionView?.frame = CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, size.width, size.height)
-//        
-//        // This is necessary for the layout to honor "itemsPerRow"
-//        self.collectionView!.collectionViewLayout.invalidateLayout()
-//        
-//    }
-//    
     //  MARK: - Initializer
     
     private func initializeView()
@@ -196,9 +185,9 @@ extension GridViewController : UICollectionViewDelegateFlowLayout
 //        Another solution to have full images shown proportinally would be to have fixed height and scale overall image based on that. 
 //        This solution is being worked on another branch called StaggredView. 
         
-//        cell.thumbnailImage.contentMode = UIViewContentMode.ScaleAspectFit
+//        cell.thumbnailImage.contentMode = UIViewContentMode.scaleAspectFit
         
-        cell.backgroundColor = UIColor.black
+        cell.backgroundColor = UIColor.white
         
         return cell
 
