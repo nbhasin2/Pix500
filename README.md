@@ -1,6 +1,11 @@
 # Pix500
 Pix500 is a photo app built on top of 500px Api
 
+### Swift 3 / XCode 8 - Support
+```
+Checkout dev-Swift-3 branch for swift 3 support. Once migration is finished the it will be merged into master.  
+```
+
 - Paginated UICollectionView 
 - Paginated DetailView 
 - Custom animation for closing and opening the detailview. 
